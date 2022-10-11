@@ -10,12 +10,14 @@ namespace PL.Controllers
         {
             ML.Usuario usuario = new ML.Usuario();
             ML.Result result = BL.Usuario.GetAll();
-
+            ML.Result resultRol = BL.Rol.GetAll();
+            usuario.Rol = new ML.Rol();
 
             if (result.Correct)
             {
                 usuario.Usuarios = result.Objects.ToList();
-
+                usuario.Rol = new ML.Rol();
+                usuario.Rol.Roles = resultRol.Objects.ToList();
                 return View(usuario);
             }
             else
