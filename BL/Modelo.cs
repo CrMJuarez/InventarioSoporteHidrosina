@@ -27,7 +27,7 @@ namespace BL
 
                     collection[0] = new SqlParameter("@Nombre", SqlDbType.VarChar);
                     collection[0].Value = modelo.Nombre;
-                    collection[1] = new SqlParameter("@Nombre", SqlDbType.VarChar);
+                    collection[1] = new SqlParameter("@Descripcion", SqlDbType.VarChar);
                     collection[1].Value = modelo.Descripcion;
                     modelo.Marca = new ML.Marca();
                     collection[2] = new SqlParameter("@IdMarca", SqlDbType.Int);
@@ -74,7 +74,7 @@ namespace BL
 
                     collection[0] = new SqlParameter("@Nombre", SqlDbType.VarChar);
                     collection[0].Value = modelo.Nombre;
-                    collection[1] = new SqlParameter("@Nombre", SqlDbType.VarChar);
+                    collection[1] = new SqlParameter("@Descripcion", SqlDbType.VarChar);
                     collection[1].Value = modelo.Descripcion;
                     modelo.Marca = new ML.Marca();
                     collection[2] = new SqlParameter("@IdMarca", SqlDbType.Int);

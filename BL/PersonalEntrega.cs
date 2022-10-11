@@ -21,19 +21,17 @@ namespace BL
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[4];
+                    SqlParameter[] collection = new SqlParameter[3];
 
-                    collection[0] = new SqlParameter("@IdPersonalEntrega", SqlDbType.Int);
-                    collection[0].Value = personalEntrega.IdPersonalEntrega;
 
-                    collection[1] = new SqlParameter("@Nombre", SqlDbType.VarChar);
-                    collection[1].Value = personalEntrega.Nombre;
+                    collection[0] = new SqlParameter("@Nombre", SqlDbType.VarChar);
+                    collection[0].Value = personalEntrega.Nombre;
 
-                    collection[2] = new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar);
-                    collection[2].Value = personalEntrega.ApellidoPaterno;
+                    collection[1] = new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar);
+                    collection[1].Value = personalEntrega.ApellidoPaterno;
 
-                    collection[3] = new SqlParameter("@ApellidoMaterno", SqlDbType.VarChar);
-                    collection[3].Value = personalEntrega.ApellidoMaterno;
+                    collection[2] = new SqlParameter("@ApellidoMaterno", SqlDbType.VarChar);
+                    collection[2].Value = personalEntrega.ApellidoMaterno;
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
                     int RowsAffected = cmd.ExecuteNonQuery();
