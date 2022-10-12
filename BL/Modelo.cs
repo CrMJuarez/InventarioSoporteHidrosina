@@ -15,7 +15,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "Modelodd";
 
@@ -61,7 +61,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "ModeloUpdate";
 
@@ -110,7 +110,7 @@ namespace BL
             try
             {
 
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "ModeloGetById";
                     using (SqlCommand cmd = new SqlCommand())
@@ -174,7 +174,7 @@ namespace BL
 
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "ModeloGetAll";
 
@@ -232,7 +232,7 @@ namespace BL
 
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "ModeloDelete";
 

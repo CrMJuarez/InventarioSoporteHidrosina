@@ -1,14 +1,31 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace DL
 {
     public class Conexion
     {
-        public static string GetConnection()
+       
+
+        public static string GetConnectionString(string connectionString)
         {
-            return System.Configuration.ConfigurationManager.ConnectionStrings["InventarioSoporteHidrosina"].ConnectionString;
+            IConfigurationRoot Configuration;
+            var builder = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json", optional: true,reloadOnChange:false );
+            try
+            {
+                Configuration = builder.Build();
+                return Configuration.GetSection(connectionString).Value;
+            }
+            finally
+            {
+                builder = null;
+                Configuration = null;
+            }
         }
     }
 }

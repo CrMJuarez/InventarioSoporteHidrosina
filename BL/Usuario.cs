@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
+//using System.Data.SqlClient;
 using System.Globalization;
 using System.Text;
 
@@ -14,7 +15,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "UsuarioAdd";
 
@@ -74,7 +75,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "UsuarioUpdate";
 
@@ -139,7 +140,7 @@ namespace BL
             try
             {
 
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "UsuarioGetById";
                     using (SqlCommand cmd = new SqlCommand())
@@ -151,7 +152,7 @@ namespace BL
 
                         SqlParameter[] collection = new SqlParameter[1];
 
-                        collection[0] = new SqlParameter("@IdFolioDeServicio", SqlDbType.Int);
+                        collection[0] = new SqlParameter("@IdUsuario", SqlDbType.Int);
                         collection[0].Value = IdUsuario;
 
                         cmd.Parameters.AddRange(collection);
@@ -177,6 +178,7 @@ namespace BL
                                 usuario.Estatus = bool.Parse(row1[6].ToString());
                                 usuario.Rol = new ML.Rol();
                                 usuario.Rol.IdRol = int.Parse(row1[7].ToString());
+                                usuario.Rol.Nombre = row1[8].ToString();
                                 result.Object = usuario;
                                 result.Correct = true;
                             }
@@ -207,7 +209,7 @@ namespace BL
 
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "UsuarioGetAll";
 
@@ -236,6 +238,7 @@ namespace BL
                             usuario.Estatus = bool.Parse(row[6].ToString());
                             usuario.Rol = new ML.Rol();
                             usuario.Rol.IdRol = int.Parse(row[7].ToString());
+                            usuario.Rol.Nombre = row[8].ToString();
                             result.Objects.Add(usuario);
                         }
                         result.Correct = true;
@@ -268,7 +271,7 @@ namespace BL
 
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "UsuarioDelete";
 

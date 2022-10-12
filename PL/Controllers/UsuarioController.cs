@@ -10,14 +10,14 @@ namespace PL.Controllers
         {
             ML.Usuario usuario = new ML.Usuario();
             ML.Result result = BL.Usuario.GetAll();
-            ML.Result resultRol = BL.Rol.GetAll();
-            usuario.Rol = new ML.Rol();
+            //ML.Result resultRol = BL.Rol.GetAll();
+           // usuario.Rol = new ML.Rol();
 
             if (result.Correct)
             {
                 usuario.Usuarios = result.Objects.ToList();
                 usuario.Rol = new ML.Rol();
-                usuario.Rol.Roles = resultRol.Objects.ToList();
+                //usuario.Rol.Roles = resultRol.Objects.ToList();
                 return View(usuario);
             }
             else
@@ -25,19 +25,32 @@ namespace PL.Controllers
             return PartialView("Modal");
         }
         [HttpGet]
-        public ActionResult Form(int IdUsuario)
+        public ActionResult Form(int? IdUsuario)
         {
             ML.Usuario usuario = new ML.Usuario();
-            ML.Result result = BL.Usuario.GetById(IdUsuario);
-            if (result.Correct)
+            ML.Result resultRol = BL.Rol.GetAll();
+            usuario.Rol = new ML.Rol();
+            if (IdUsuario == null)
             {
-                usuario = (ML.Usuario)result.Object;
+                //usuario = (ML.Usuario)result.Object;
+                usuario.Rol = new ML.Rol();
+                usuario.Rol.Roles = resultRol.Objects.ToList();
                 return View(usuario);
             }
             else
             {
-                ViewBag.Message = result.ErrorMessage;
-                return View();
+                ML.Result result = BL.Usuario.GetById(IdUsuario.Value);
+                if (result.Correct)
+                {
+                    usuario = (ML.Usuario)result.Object;
+                    usuario.Rol.Roles = resultRol.Objects.ToList();
+                    return View(usuario);
+                }
+                else
+                {
+                    ViewBag.Message = result.ErrorMessage;
+                    return View();
+                }
             }
         }
     }

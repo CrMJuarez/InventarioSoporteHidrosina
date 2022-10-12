@@ -14,7 +14,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "PersonalAutorizacionAdd";
 
@@ -62,7 +62,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "personalAutorizacionUpdate";
 
@@ -114,7 +114,7 @@ namespace BL
             try
             {
 
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "PersonalAutorizacionGetById";
                     using (SqlCommand cmd = new SqlCommand())
@@ -177,7 +177,7 @@ namespace BL
 
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "PersonalAutorizacionGetAll";
 
@@ -234,7 +234,7 @@ namespace BL
 
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "PersonalAutorizacionDelete";
 

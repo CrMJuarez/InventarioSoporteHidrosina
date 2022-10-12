@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Text;
 
 namespace BL
@@ -13,7 +13,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
 
                     string query = "RolGetAll";
@@ -33,8 +33,8 @@ namespace BL
                         foreach (DataRow row in RolTable.Rows)
                         {
                             ML.Rol Rol = new ML.Rol();
-                            Rol.IdRol = int.Parse(row[1].ToString());
-                            Rol.Nombre = row[2].ToString();
+                            Rol.IdRol = int.Parse(row[0].ToString());
+                            Rol.Nombre = row[1].ToString();
 
                             result.Objects.Add(Rol);
                         }

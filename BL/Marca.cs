@@ -14,7 +14,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "MarcaAdd";
 
@@ -55,7 +55,7 @@ namespace BL
             ML.Result result = new ML.Result();
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "MarcaUpdate";
 
@@ -102,7 +102,7 @@ namespace BL
             try
             {
 
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "MarcaGetById";
                     using (SqlCommand cmd = new SqlCommand())
@@ -162,7 +162,7 @@ namespace BL
 
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "MarcaGetAll";
 
@@ -217,7 +217,7 @@ namespace BL
 
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnection()))
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "MarcaDelete";
 
