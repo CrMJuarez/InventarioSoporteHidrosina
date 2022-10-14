@@ -8,6 +8,7 @@ namespace ML
     {
         public int IdRol { get; set; }
         public string Nombre { get; set; }
+        public string NombreRol { get; set; }
         public List<object> Roles { get; set; }
     }
 }

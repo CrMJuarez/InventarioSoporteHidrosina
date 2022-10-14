@@ -9,14 +9,27 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <h5>Seleccione un Usuario para editarlo u el boton + para agregar un usuario...</h5>
             <hr />
         </div>
     </div>
-</div>
 
-<div style="float:right;">
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Usuario/UsuarioJS.js"></script>
+
+
+<div class="row">
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-1" style="padding-left:100px">*@
+        @*@Html.ActionLink("Agregar", "Modal", "Empleado", htmlAttributes: new { @class = "btn btn-success" })*@
+       @* <button type="button" class="btn btn-success" id="btnGuardar" onclick="ShowModal()">Agregar</button>
+    </div>
+</div>*@
+
+
+    <div style="float:right;">
     @Html.ActionLink("+", "Form", "Usuario", htmlAttributes: new { @class = "btn btn-success" })
 </div>
 @if (Model.Usuarios == null)
@@ -25,12 +38,16 @@
 }
 else
 {
-    <table class="table table-bordered table-responsive">
+      @*  <div style="overflow-x:auto;">*@
+            
+        
+    <table class="table table-bordered">
         <thead>
-            <tr>
+                <tr style="color: White; background-color: #00B140; font-size: Medium; font-weight: bold; padding: 8px" role="row">
+                  
                 <td class="text-center">Editar</td>
 
-                <td style="display :none;">IdUusario</td>
+                <td style="display :none;">IdUsario</td>
                 <td class="text-center">Nombre</td>
                 @*<td class="text-center">ApellidoPaterno</td>
                 <td class="text-center">ApellidoMaterno</td>*@
@@ -46,14 +63,33 @@ else
             @foreach (ML.Usuario usuario in Model.Usuarios)
             {
                 <tr>
-                    <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Empleado", new { IdUsuario = usuario.IdUsuario })"></a></td>
+                    <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Usuario", new { IdUsuario = usuario.IdUsuario })"></a></td>
 
                     <td style="display :none;">@usuario.IdUsuario</td>
 
                     <td class="text-center">@usuario.Nombre @usuario.ApellidoPaterno @usuario.ApellidoMaterno</td>
                     <td class="text-center">@usuario.NombreUsuario</td>
                     <td class="text-center">@usuario.Contrasenia</td>
-                    <td class="text-center">@usuario.Estatus</td>
+                    @*<td class="text-center">@usuario.Estatus</td>*@
+
+                    <td class="text-center">
+                            @if (usuario.Estatus)
+                            {
+                                <a href=@Url.Action("UpdateEstatus","Usuario",new {IdUsuario=@usuario.IdUsuario}) onclick="return confirm('Estas seguro que deseas desactivar este usuario?');">
+                                    <img src="~/Imagenes/ban_verde.png" style="width:25px ; height:25px" />
+                                </a>
+                            }
+                            else
+                            {
+
+                                <a href=@Url.Action("UpdateEstatus","Usuario",new {IdUsuario=@usuario.IdUsuario})>
+                                    <img src="~/Imagenes/ban_roja.png" style="width:25px ; height:25px" />
+                                </a>
+                            }
+
+                        </td>
+
+
                     <td style="display :none;">@usuario.Rol.IdRol</td>
                     <td class="text-center">@usuario.Rol.Nombre</td>
                     @*se tiene que llamar el modelo*@
@@ -64,8 +100,10 @@ else
                     <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Usuario", new { IdUsuario = usuario.IdUsuario})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
                 </tr>
             }
+   
         </tbody>
     </table>
+       @* </div>*@
 }
-
+</div>
 

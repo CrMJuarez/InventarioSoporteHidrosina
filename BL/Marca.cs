@@ -63,7 +63,7 @@ namespace BL
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[1];
+                    SqlParameter[] collection = new SqlParameter[2];
 
 
                     collection[0] = new SqlParameter("@IdMarca", SqlDbType.Int);

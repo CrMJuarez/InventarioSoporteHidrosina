@@ -17,7 +17,7 @@ namespace BL
             {
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "Modelodd";
+                    string query = "ModeloAdd";
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = query;
@@ -25,11 +25,13 @@ namespace BL
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlParameter[] collection = new SqlParameter[3];
 
+
+             
                     collection[0] = new SqlParameter("@Nombre", SqlDbType.VarChar);
                     collection[0].Value = modelo.Nombre;
                     collection[1] = new SqlParameter("@Descripcion", SqlDbType.VarChar);
                     collection[1].Value = modelo.Descripcion;
-                    modelo.Marca = new ML.Marca();
+               
                     collection[2] = new SqlParameter("@IdMarca", SqlDbType.Int);
                     collection[2].Value = modelo.Marca.IdMarca;
 
@@ -69,16 +71,16 @@ namespace BL
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[3];
+                    SqlParameter[] collection = new SqlParameter[4];
 
-
-                    collection[0] = new SqlParameter("@Nombre", SqlDbType.VarChar);
-                    collection[0].Value = modelo.Nombre;
-                    collection[1] = new SqlParameter("@Descripcion", SqlDbType.VarChar);
-                    collection[1].Value = modelo.Descripcion;
-                    modelo.Marca = new ML.Marca();
-                    collection[2] = new SqlParameter("@IdMarca", SqlDbType.Int);
-                    collection[2].Value = modelo.Marca.IdMarca;
+                    collection[0] = new SqlParameter("@IdModelo", SqlDbType.VarChar);
+                    collection[0].Value = modelo.IdModelo;
+                    collection[1] = new SqlParameter("@Nombre", SqlDbType.VarChar);
+                    collection[1].Value = modelo.Nombre;
+                    collection[2] = new SqlParameter("@Descripcion", SqlDbType.VarChar);
+                    collection[2].Value = modelo.Descripcion;
+                    collection[3] = new SqlParameter("@IdMarca", SqlDbType.Int);
+                    collection[3].Value = modelo.Marca.IdMarca;
 
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
@@ -143,7 +145,7 @@ namespace BL
                                 modelo.Descripcion = row1[2].ToString();
                                 modelo.Marca = new ML.Marca();
                                 modelo.Marca.IdMarca = int.Parse(row1[3].ToString());
-
+                                modelo.Marca.Nombre = row1[4].ToString();
                                 result.Object = modelo;
                                 result.Correct = true;
                             }
@@ -199,7 +201,7 @@ namespace BL
                             modelo.Descripcion = row[2].ToString();
                             modelo.Marca = new ML.Marca();
                             modelo.Marca.IdMarca = int.Parse(row[3].ToString());
-
+                            modelo.Marca.Nombre = row[4].ToString();
                             result.Objects.Add(modelo);
                         }
                         result.Correct = true;

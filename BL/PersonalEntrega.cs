@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BL
 {
-    internal class PersonalEntrega
+    public class PersonalEntrega
     {
         public static ML.Result Add(ML.PersonalEntrega personalEntrega)
         {

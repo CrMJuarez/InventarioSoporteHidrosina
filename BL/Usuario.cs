@@ -23,29 +23,28 @@ namespace BL
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[8];
+                    SqlParameter[] collection = new SqlParameter[7];
 
-                    collection[1] = new SqlParameter("@Nombre", SqlDbType.VarChar);
-                    collection[1].Value = usuario.Nombre;
+                    collection[0] = new SqlParameter("@Nombre", SqlDbType.VarChar);
+                    collection[0].Value = usuario.Nombre;
 
-                    collection[2] = new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar);
-                    collection[2].Value = usuario.ApellidoPaterno;
+                    collection[1] = new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar);
+                    collection[1].Value = usuario.ApellidoPaterno;
 
-                    collection[3] = new SqlParameter("@ApellidoMaterno", SqlDbType.VarChar);
-                    collection[3].Value = usuario.ApellidoMaterno;
+                    collection[2] = new SqlParameter("@ApellidoMaterno", SqlDbType.VarChar);
+                    collection[2].Value = usuario.ApellidoMaterno;
 
-                    collection[4] = new SqlParameter("@NombreUsuario", SqlDbType.VarChar);
-                    collection[4].Value = usuario.NombreUsuario;
+                    collection[3] = new SqlParameter("@NombreUsuario", SqlDbType.VarChar);
+                    collection[3].Value = usuario.NombreUsuario;
 
-                    collection[5] = new SqlParameter("@Contrasenia", SqlDbType.VarChar);
-                    collection[5].Value = usuario.Contrasenia;
+                    collection[4] = new SqlParameter("@Contrasenia", SqlDbType.VarChar);
+                    collection[4].Value = usuario.Contrasenia;
 
-                    collection[6] = new SqlParameter("@Estatus", SqlDbType.Bit);
-                    collection[6].Value = usuario.Estatus = true;
+                    collection[5] = new SqlParameter("@Estatus", SqlDbType.Bit);
+                    collection[5].Value = usuario.Estatus = true;
 
-                    collection[7] = new SqlParameter("@IdRol", SqlDbType.Int);
-                    usuario.Rol = new ML.Rol();
-                    collection[7].Value = usuario.Rol.IdRol;
+                    collection[6] = new SqlParameter("@IdRol", SqlDbType.Int);  
+                    collection[6].Value = usuario.Rol.IdRol;
 
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
@@ -104,10 +103,10 @@ namespace BL
                     collection[5].Value = usuario.Contrasenia;
 
                     collection[6] = new SqlParameter("@Estatus", SqlDbType.Bit);
-                    collection[6].Value = usuario.Estatus = true;
+                    collection[6].Value = usuario.Estatus;
 
+                    //usuario.Rol = new ML.Rol();
                     collection[7] = new SqlParameter("@IdRol", SqlDbType.Int);
-                    usuario.Rol = new ML.Rol();
                     collection[7].Value = usuario.Rol.IdRol;
 
                     cmd.Parameters.AddRange(collection);
