@@ -1,0 +1,67 @@
+﻿@model ML.Operadora
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <h2>Alta de Operadoras</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h5>Seleccione una Operadora para editarlo u el boton + para agregar una operadora...</h5>
+            <hr />
+        </div>
+    </div>
+    <div style="float:right;">
+        @Html.ActionLink("+", "Form", "Operadora", htmlAttributes: new { @class = "btn btn-success" })
+    </div>
+    @if (Model.Operadoras == null)
+    {
+        <div class="p-3 mb-2 bg-danger text-white">Aun no hay operadoras registradas</div>
+    }
+    else
+    {
+        @*  <div style="overflow-x:auto;">*@
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr style="color: White; background-color: #00B140; font-size: Medium; font-weight: bold; padding: 8px" role="row">
+
+                    <td class="text-center">Editar</td>
+
+                    <td style="display :none;">IdOperadora</td>
+                    <td class="text-center">Nombre Corto</td>
+                    <td class="text-center">Razon Social</td>
+                    <td class="text-center">Domicilio</td>
+                    <td class="text-center">RFC</td>
+                    @*<td class="text-center">ApellidoPaterno</td>
+                <td class="text-center">ApellidoMaterno</td>*@
+
+
+                    <td class="text-center">Eliminar</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.Operadora operadora in Model.Operadoras)
+                {
+                    <tr>
+                        <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Operadora", new { IdOperadora = operadora.IdOperadora })"></a></td>
+
+                        <td style="display :none;">@operadora.IdOperadora</td>
+
+                        <td class="text-center">@operadora.NombreCorto</td>
+                        <td class="text-center">@operadora.RazonSocial</td>
+                        <td class="text-center">@operadora.Domicilio</td>
+                        <td class="text-center">@operadora.RFC</td>
+                        <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Operadora", new { IdOperadora = operadora.IdOperadora})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        @* </div>*@
+    }
+</div>

@@ -1,31 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using System.Data;
+using Microsoft.Data.SqlClient;
 using System.Text;
-using ML;
 
 namespace BL
 {
-    public class Marca
+    public class DireccionEntrada
     {
-        public static ML.Result Add(ML.Marca marca)
+
+        public static ML.Result Add(ML.Modelo modelo)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "MarcaAdd";
+                    string query = "ModeloAdd";
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[1];
+                    SqlParameter[] collection = new SqlParameter[3];
+
+
 
                     collection[0] = new SqlParameter("@Nombre", SqlDbType.VarChar);
-                    collection[0].Value = marca.Nombre;
+                    collection[0].Value = modelo.Nombre;
+                    collection[1] = new SqlParameter("@Descripcion", SqlDbType.VarChar);
+                    collection[1].Value = modelo.Descripcion;
+
+                    collection[2] = new SqlParameter("@IdMarca", SqlDbType.Int);
+                    collection[2].Value = modelo.Marca.IdMarca;
 
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
@@ -50,27 +57,29 @@ namespace BL
             return result;
 
         }
-        public static ML.Result Update(ML.Marca marca)
+        public static ML.Result Update(ML.Modelo modelo)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "MarcaUpdate";
+                    string query = "ModeloUpdate";
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[2];
+                    SqlParameter[] collection = new SqlParameter[4];
 
-
-                    collection[0] = new SqlParameter("@IdMarca", SqlDbType.Int);
-                    collection[0].Value = marca.IdMarca;
-
+                    collection[0] = new SqlParameter("@IdModelo", SqlDbType.VarChar);
+                    collection[0].Value = modelo.IdModelo;
                     collection[1] = new SqlParameter("@Nombre", SqlDbType.VarChar);
-                    collection[1].Value = marca.Nombre;
+                    collection[1].Value = modelo.Nombre;
+                    collection[2] = new SqlParameter("@Descripcion", SqlDbType.VarChar);
+                    collection[2].Value = modelo.Descripcion;
+                    collection[3] = new SqlParameter("@IdMarca", SqlDbType.Int);
+                    collection[3].Value = modelo.Marca.IdMarca;
 
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
@@ -96,7 +105,7 @@ namespace BL
 
         }
 
-        public static ML.Result GetById(int IdMarca)
+        public static ML.Result GetById(int IdModelo)
         {
             ML.Result result = new ML.Result();
             try
@@ -104,7 +113,7 @@ namespace BL
 
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "MarcaGetById";
+                    string query = "ModeloGetById";
                     using (SqlCommand cmd = new SqlCommand())
                     {
                         cmd.CommandText = query;
@@ -114,25 +123,29 @@ namespace BL
 
                         SqlParameter[] collection = new SqlParameter[1];
 
-                        collection[0] = new SqlParameter("@IdMarca", SqlDbType.Int);
-                        collection[0].Value = IdMarca;
+                        collection[0] = new SqlParameter("@IdModelo", SqlDbType.Int);
+                        collection[0].Value = IdModelo;
 
                         cmd.Parameters.AddRange(collection);
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
 
-                            DataTable marcaTable = new DataTable();
-                            da.Fill(marcaTable);
+                            DataTable modeloTable = new DataTable();
+                            da.Fill(modeloTable);
                             cmd.Connection.Open();
 
-                            if (marcaTable.Rows.Count > 0)
+                            if (modeloTable.Rows.Count > 0)
                             {
                                 result.Objects = new List<object>();
-                                DataRow row1 = marcaTable.Rows[0];
-                                ML.Marca marca = new ML.Marca();
-                                marca.IdMarca = int.Parse(row1[0].ToString());
-                                marca.Nombre = row1[1].ToString();
-                                result.Object = marca;
+                                DataRow row1 = modeloTable.Rows[0];
+                                ML.Modelo modelo = new ML.Modelo();
+                                modelo.IdModelo = int.Parse(row1[0].ToString());
+                                modelo.Nombre = row1[1].ToString();
+                                modelo.Descripcion = row1[2].ToString();
+                                modelo.Marca = new ML.Marca();
+                                modelo.Marca.IdMarca = int.Parse(row1[3].ToString());
+                                modelo.Marca.Nombre = row1[4].ToString();
+                                result.Object = modelo;
                                 result.Correct = true;
                             }
                             else
@@ -164,28 +177,31 @@ namespace BL
             {
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "MarcaGetAll";
+                    string query = "ModeloGetAll";
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Connection.Open();
-                    DataTable marcaTable = new DataTable();
+                    DataTable modeloTable = new DataTable();
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(marcaTable);
+                    da.Fill(modeloTable);
 
-                    if (marcaTable.Rows.Count > 0)
+                    if (modeloTable.Rows.Count > 0)
                     {
                         result.Objects = new List<object>();
 
-                        foreach (DataRow row in marcaTable.Rows)
+                        foreach (DataRow row in modeloTable.Rows)
                         {
-                            ML.Marca marca = new ML.Marca();
-                            marca.IdMarca = int.Parse(row[0].ToString());
-                            marca.Nombre = row[1].ToString();
-
-                            result.Objects.Add(marca);
+                            ML.Modelo modelo = new ML.Modelo();
+                            modelo.IdModelo = int.Parse(row[0].ToString());
+                            modelo.Nombre = row[1].ToString();
+                            modelo.Descripcion = row[2].ToString();
+                            modelo.Marca = new ML.Marca();
+                            modelo.Marca.IdMarca = int.Parse(row[3].ToString());
+                            modelo.Marca.Nombre = row[4].ToString();
+                            result.Objects.Add(modelo);
                         }
                         result.Correct = true;
                     }
@@ -193,7 +209,7 @@ namespace BL
 
                     {
                         result.Correct = false;
-                        result.ErrorMessage = "Ocurrió un error al momento de mostrar la marca";
+                        result.ErrorMessage = "Ocurrió un error al momento de mostrar el modelo";
                     }
                     cmd.Connection.Close();
                 }
@@ -211,7 +227,7 @@ namespace BL
 
 
         }
-        public static ML.Result Delete(ML.Marca marca)
+        public static ML.Result Delete(ML.Modelo modelo)
         {
             ML.Result result = new ML.Result();
 
@@ -219,7 +235,7 @@ namespace BL
             {
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "MarcaDelete";
+                    string query = "ModeloDelete";
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = query;
@@ -228,8 +244,8 @@ namespace BL
 
                     SqlParameter[] collection = new SqlParameter[1];
 
-                    collection[0] = new SqlParameter("@IdMarca", SqlDbType.Int);
-                    collection[0].Value = marca.IdMarca;
+                    collection[0] = new SqlParameter("@IdModelo", SqlDbType.Int);
+                    collection[0].Value = modelo.IdModelo;
 
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
@@ -255,3 +271,4 @@ namespace BL
         }
     }
 }
+

@@ -1,31 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Text;
+using System.Text.RegularExpressions;
+using Microsoft.Data.SqlClient;
 using ML;
 
 namespace BL
 {
-    public class Marca
+    public class Operadora
     {
-        public static ML.Result Add(ML.Marca marca)
+        public static ML.Result Add(ML.Operadora operadora)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "MarcaAdd";
+                    string query = "OperadoraAdd";
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[1];
+                    SqlParameter[] collection = new SqlParameter[4];
 
-                    collection[0] = new SqlParameter("@Nombre", SqlDbType.VarChar);
-                    collection[0].Value = marca.Nombre;
+                    collection[0] = new SqlParameter("@NombreCorto", SqlDbType.VarChar);
+                    collection[0].Value = operadora.NombreCorto;
+                    collection[1] = new SqlParameter("@RazonSocial", SqlDbType.VarChar);
+                    collection[1].Value = operadora.RazonSocial;
+                    collection[2] = new SqlParameter("@Domicilio", SqlDbType.VarChar);
+                    collection[2].Value = operadora.Domicilio;
+                    collection[3] = new SqlParameter("@RFC", SqlDbType.VarChar);
+                    collection[3].Value = operadora.RFC;
+                   
 
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
@@ -50,27 +58,31 @@ namespace BL
             return result;
 
         }
-        public static ML.Result Update(ML.Marca marca)
+        public static ML.Result Update(ML.Operadora operadora)
         {
             ML.Result result = new ML.Result();
             try
             {
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "MarcaUpdate";
+                    string query = "OperadoraUpdate";
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[2];
+                    SqlParameter[] collection = new SqlParameter[5];
 
-
-                    collection[0] = new SqlParameter("@IdMarca", SqlDbType.Int);
-                    collection[0].Value = marca.IdMarca;
-
-                    collection[1] = new SqlParameter("@Nombre", SqlDbType.VarChar);
-                    collection[1].Value = marca.Nombre;
+                    collection[0] = new SqlParameter("@IdOperadora", SqlDbType.Int);
+                    collection[0].Value = operadora.IdOperadora;
+                    collection[1] = new SqlParameter("@NombreCorto", SqlDbType.VarChar);
+                    collection[1].Value = operadora.NombreCorto;
+                    collection[2] = new SqlParameter("@RazonSocial", SqlDbType.VarChar);
+                    collection[2].Value = operadora.RazonSocial;
+                    collection[3] = new SqlParameter("@Domicilio", SqlDbType.VarChar);
+                    collection[3].Value = operadora.Domicilio;
+                    collection[4] = new SqlParameter("@RFC", SqlDbType.VarChar);
+                    collection[4].Value = operadora.RFC;
 
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
@@ -96,7 +108,7 @@ namespace BL
 
         }
 
-        public static ML.Result GetById(int IdMarca)
+        public static ML.Result GetById(int IdOperadora)
         {
             ML.Result result = new ML.Result();
             try
@@ -104,7 +116,7 @@ namespace BL
 
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "MarcaGetById";
+                    string query = "OperadoraGetById";
                     using (SqlCommand cmd = new SqlCommand())
                     {
                         cmd.CommandText = query;
@@ -114,25 +126,29 @@ namespace BL
 
                         SqlParameter[] collection = new SqlParameter[1];
 
-                        collection[0] = new SqlParameter("@IdMarca", SqlDbType.Int);
-                        collection[0].Value = IdMarca;
+                        collection[0] = new SqlParameter("@IdOperadora", SqlDbType.Int);
+                        collection[0].Value = IdOperadora;
 
                         cmd.Parameters.AddRange(collection);
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
 
-                            DataTable marcaTable = new DataTable();
-                            da.Fill(marcaTable);
+                            DataTable operadoraTable = new DataTable();
+                            da.Fill(operadoraTable);
                             cmd.Connection.Open();
 
-                            if (marcaTable.Rows.Count > 0)
+                            if (operadoraTable.Rows.Count > 0)
                             {
                                 result.Objects = new List<object>();
-                                DataRow row1 = marcaTable.Rows[0];
-                                ML.Marca marca = new ML.Marca();
-                                marca.IdMarca = int.Parse(row1[0].ToString());
-                                marca.Nombre = row1[1].ToString();
-                                result.Object = marca;
+                                DataRow row1 = operadoraTable.Rows[0];
+                                ML.Operadora operadora = new ML.Operadora();
+                                operadora.IdOperadora = int.Parse(row1[0].ToString());
+                                operadora.NombreCorto = row1[1].ToString();
+                                operadora.RazonSocial = row1[2].ToString();
+                                operadora.Domicilio = row1[3].ToString();
+                                operadora.RFC = row1[4].ToString();
+
+                                result.Object = operadora;
                                 result.Correct = true;
                             }
                             else
@@ -164,28 +180,31 @@ namespace BL
             {
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "MarcaGetAll";
+                    string query = "OperadoraGetAll";
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Connection.Open();
-                    DataTable marcaTable = new DataTable();
+                    DataTable operadoraTable = new DataTable();
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(marcaTable);
+                    da.Fill(operadoraTable);
 
-                    if (marcaTable.Rows.Count > 0)
+                    if (operadoraTable.Rows.Count > 0)
                     {
                         result.Objects = new List<object>();
 
-                        foreach (DataRow row in marcaTable.Rows)
+                        foreach (DataRow row in operadoraTable.Rows)
                         {
-                            ML.Marca marca = new ML.Marca();
-                            marca.IdMarca = int.Parse(row[0].ToString());
-                            marca.Nombre = row[1].ToString();
+                            ML.Operadora operadora = new ML.Operadora();
+                            operadora.IdOperadora = int.Parse(row[0].ToString());
+                            operadora.NombreCorto = row[1].ToString();
+                            operadora.RazonSocial = row[2].ToString();
+                            operadora.Domicilio = row[3].ToString();
+                            operadora.RFC = row[4].ToString();
 
-                            result.Objects.Add(marca);
+                            result.Objects.Add(operadora);
                         }
                         result.Correct = true;
                     }
@@ -193,7 +212,7 @@ namespace BL
 
                     {
                         result.Correct = false;
-                        result.ErrorMessage = "Ocurrió un error al momento de mostrar la marca";
+                        result.ErrorMessage = "Ocurrió un error al momento de mostrar la operadora";
                     }
                     cmd.Connection.Close();
                 }
@@ -211,7 +230,7 @@ namespace BL
 
 
         }
-        public static ML.Result Delete(ML.Marca marca)
+        public static ML.Result Delete(ML.Operadora operadora)
         {
             ML.Result result = new ML.Result();
 
@@ -219,7 +238,7 @@ namespace BL
             {
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "MarcaDelete";
+                    string query = "OperadoraDelete";
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = query;
@@ -228,8 +247,8 @@ namespace BL
 
                     SqlParameter[] collection = new SqlParameter[1];
 
-                    collection[0] = new SqlParameter("@IdMarca", SqlDbType.Int);
-                    collection[0].Value = marca.IdMarca;
+                    collection[0] = new SqlParameter("@IdOperadora", SqlDbType.Int);
+                    collection[0].Value = operadora.IdOperadora;
 
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
@@ -255,3 +274,4 @@ namespace BL
         }
     }
 }
+
