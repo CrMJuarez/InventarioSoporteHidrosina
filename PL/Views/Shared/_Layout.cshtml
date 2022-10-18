@@ -7,49 +7,83 @@
     <script src="http://bootboxjs.com/bootbox.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+
+    <script type="text/javascript" src="~/js/Estilosbs.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PL</title>
+    <title>@ViewData["Title"] - Hidrosina</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Estilosbs.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PL</a>
+        <nav class="navbar navbar-expand-lg navbar-dark .bg-white">
+            <div class="container-fluid">
+                <div class="col-md-2 col-sm-6 col-xs-8 branding">
+                <a class="navbar-brand" href="#">
+                    <img class="logo horizontal-logo" src="~/Imagenes/logo.png" alt="Hidrosina">
+                </a>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                       @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="GetAll">Alta de usuarios</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PersonalAutorizacion" asp-action="GetAll">Alta de Personal que autoriza</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Catalogos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                <a class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="PersonalAutorizacion" asp-action="GetAll">Alta de Personal que autoriza</a>
+                                </a>
+                                <a class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="PersonalEntrega" asp-action="GetAll">Alta de Personal que entrega</a>
+                                </a>
+                                <a class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Marca" asp-action="GetAll">Alta de Marcas</a>
+                                </a>
+                                <a class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Modelo" asp-action="GetAll">Alta de Modelos</a>
+                                </a>
+                                <a class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Operadora" asp-action="GetAll">Alta de Operadoras</a>
+                                </a>
+                                <a class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="DireccionEntrada" asp-action="GetAll">Alta de Direcciones de entrada</a>
+                                </a>
+                                <a class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="DireccionDestino" asp-action="GetAll">Alta de Direcciones de destino</a>
+                                </a>
+                                <a class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="TipoEquipo" asp-action="GetAll">Alta de tipos de equipo</a>
+                                </a>
+                            </div>
+
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PersonalEntrega" asp-action="GetAll">Alta de Personal que entrega</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Inventario
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                <a class="dropdown-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="AltaInventario" asp-action="GetAll">Alta de inventario</a>
+                            </a>
+                                <a class="dropdown-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="BajaInventario" asp-action="GetAll">Baja de inventario</a>
+                                </a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Marca" asp-action="GetAll">Alta de Marcas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Modelo" asp-action="GetAll">Alta de Modelos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Operadora" asp-action="GetAll">Alta de Operadoras</a>
-                        </li>
+                      
                     </ul>
                 </div>
+
             </div>
         </nav>
     </header>
@@ -59,11 +93,9 @@
         </main>
     </div>
 
-   @* <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - PL - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>*@
+    <footer class="border-top footer text-muted">
+        <label style="margin-top:2%;margin-left:35%;font-size:x-small;color:#C3C3C3">Hidrosina 2022 Todos los derechos Reservados</label>
+    </footer>
     <script type="text/javascript" src="~/Scripts/PersonalAutorizacion/PersonalJS.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
