@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ML.Inventario
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>@ViewBag.Titulo</h3>
+                <h5>Ingrese los datos</h5>
+                <hr />
+            </div>
+        </div>
+    </div>
+    @* <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Usuario/UsuarioJS.js"></script>*@
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Form", "Inventario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+
+                    <div class="form-group" style="display: none;">
+                        @Html.LabelFor(model => model.IdInventario, new { @class = "control-label col-md-2 hidden" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.IdInventario, new { @class = "form-control hidden" })
+                            @Html.ValidationMessageFor(model => model.IdInventario)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NumeroSerie, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.NumeroSerie, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.NumeroSerie)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NIAF, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.NIAF, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.NIAF)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Responsable, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.Responsable, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Responsable)
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Comentario, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.Comentario, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Comentario)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-3" style="display: none;">
+                            @Html.LabelFor(model => model.TipoEquipo.IdTipoEquipo, new { @class = "control-label col-md-2" })
+                        </div>
+                        @Html.LabelFor(model => model.TipoEquipo.Nombre, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                        @Html.DropDownListFor(model => model.TipoEquipo.IdTipoEquipo, new SelectList(Model.TipoEquipo.Equipos, "IdTipoEquipo", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-3" style="display: none;">
+                            @Html.LabelFor(model => model.Marca.IdMarca, new { @class = "control-label col-md-2" })
+                        </div>
+                        @Html.LabelFor(model => model.Marca.Nombre, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.Marca.IdMarca, new SelectList(Model.Marca.Marcas, "IdMarca", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3" style="display: none;">
+                            @Html.LabelFor(model => model.Modelo.IdModelo, new { @class = "control-label col-md-2" })
+                        </div>
+                        @Html.LabelFor(model => model.Modelo.Nombre, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.Modelo.IdModelo, new SelectList(Model.Modelo.Modelos, "IdModelo", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Modelo.Descripcion, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.Modelo.Descripcion, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Modelo.Descripcion)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3" style="display: none;">
+                            @Html.LabelFor(model => model.DireccionEntrada.IdDireccionEntrada, new { @class = "control-label col-md-2" })
+                        </div>
+                        @Html.LabelFor(model => model.DireccionEntrada.IdDireccionEntrada, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.DireccionEntrada.IdDireccionEntrada, new SelectList(Model.DireccionEntrada.Direcciones, "IdDireccionEntrada", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-2">
+                            <div class="btn-group d-flex w-100" role="group">
+                                <input type="submit" value="@ViewBag.Accion" class="btn btn-success" />
+                                @Html.ActionLink("Regresar", "GetAll", "Inventario", htmlAttributes: new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+

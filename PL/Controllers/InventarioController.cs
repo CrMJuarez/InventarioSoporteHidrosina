@@ -15,8 +15,6 @@ namespace PL.Controllers
             if (result.Correct)
             {
                 inventario.Inventarios = result.Objects.ToList();
-                //usuario.Rol = new ML.Rol();
-                //usuario.Rol.Roles = resultRol.Objects.ToList();
                 return View(inventario);
             }
             else
@@ -28,7 +26,12 @@ namespace PL.Controllers
         {
             ML.Usuario usuario = new ML.Usuario();
             ML.Result resultRol = BL.Rol.GetAll();
+            
             usuario.Rol = new ML.Rol();
+            //Tipo equipo
+            //marca
+            //modelo
+            //direccionentrda
             if (IdUsuario == null)
             {
                 //usuario = (ML.Usuario)result.Object;
