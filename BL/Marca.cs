@@ -253,5 +253,80 @@ namespace BL
             }
             return result;
         }
-    }
+
+
+
+
+
+        public static ML.Result MarcaGetByIdModelo(int IdMarca)
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
+                {
+                    string query = "MarcaGetByIdModelo";
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.CommandText = query;
+                        cmd.Connection = context;
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+
+                        SqlParameter[] collection = new SqlParameter[1];
+
+                        collection[0] = new SqlParameter("@IdMarca", SqlDbType.Int);
+                        collection[0].Value = IdMarca;
+
+                        cmd.Parameters.AddRange(collection);
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+
+                            DataTable marcaTable = new DataTable();
+                            da.Fill(marcaTable);
+                            cmd.Connection.Open();
+
+                            if (marcaTable.Rows.Count > 0)
+                            {
+                                result.Objects = new List<object>();
+                                DataRow row1 = marcaTable.Rows[0];
+                                ML.Modelo modelo = new ML.Modelo();
+                                modelo.IdModelo = int.Parse(row1[0].ToString());
+                                modelo.Nombre = row1[1].ToString();
+                                modelo.Descripcion = row1[2].ToString();
+
+                                modelo.Marca = new ML.Marca();
+                                modelo.Marca.IdMarca = int.Parse(row1[3].ToString());
+
+                                result.Objects.Add(modelo);
+                                //result.Object = modelo;
+                                result.Correct = true;
+                            }
+                            else
+                            {
+                                result.Correct = false;
+                                result.ErrorMessage = "No se encontraron registros";
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+                result.Ex = ex;
+
+            }
+            return result;
+
+        }
+
+
+     
+
+
+}
 }

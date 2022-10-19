@@ -1,0 +1,73 @@
+﻿@model ML.EntregaEquipo
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <h2>Entrega de equipos</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h5>Seleccione un equipo en inventario para entrega</h5>
+            <hr />
+        </div>
+    </div>
+    <div style="float:right;">
+        @Html.ActionLink("+", "Form", "EntregaEquipo", htmlAttributes: new { @class = "btn btn-success" })
+    </div>
+    @if (Model.Entregas == null)
+    {
+        <div class="p-3 mb-2 bg-danger text-white">Aun no hay equipos en inventario</div>
+    }
+    else
+    {
+        @*  <div style="overflow-x:auto;">*@
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr style="color: White; background-color: #00B140; font-size: Medium; font-weight: bold; padding: 8px" role="row">
+
+                    @*<td class="text-center">Editar</td>*@
+
+                    <td style="display :none;">IdEntregaEquipo</td>
+                    <td class="text-center">Destino</td>
+                    <td class="text-center">Razon Social</td>
+                    <td class="text-center">Entrega</td>
+                    <td class="text-center">Recibe</td>
+                    <td class="text-center">Equipo en inventario</td>
+                    <td class="text-center">Justificacion</td>
+                    <td class="text-center">Autorizacion</td>
+                    @*<td class="text-center">ApellidoPaterno</td>
+                <td class="text-center">ApellidoMaterno</td>*@
+
+
+                    <td class="text-center">Entrega</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.EntregaEquipo entregaEquipo in Model.Entregas)
+                {
+                    <tr>
+@*                        <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "DireccionEntrada", new { IdDireccionEntrada = direccionEntrada.IdDireccionEntrada })"></a></td>
+*@
+                        <td style="display :none;">@entregaEquipo.IdEntregaEquipo</td>
+
+                        <td class="text-center">@entregaEquipo.Destino</td>
+                        <td style="text-center">@entregaEquipo.RazonSocial</td>
+                        <td class="text-center">@entregaEquipo.Entrega</td>
+                        <td class="text-center">@entregaEquipo.Recibe</td>
+                        <td style="text-center">@entregaEquipo.NombreEquipo</td>
+                        <td class="text-center">@entregaEquipo.Justificacion</td>
+                        <td class="text-center">@entregaEquipo.Autorizacion</td>
+                       <td class="text-center"><a class = "btn btn-success" href="@Url.Action("Entrega", "EntregaEquipo", new { IdEntregaEquipo = entregaEquipo.IdEntregaEquipo})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+                  </tr>
+                }
+
+            </tbody>
+        </table>
+        @* </div>*@
+    }
+</div>

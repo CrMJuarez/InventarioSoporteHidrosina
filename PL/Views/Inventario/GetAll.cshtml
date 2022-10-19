@@ -49,7 +49,7 @@
                 @foreach (ML.Inventario inventario in Model.Inventarios)
                 {
                     <tr>
-                        <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Inventario", new { IdOperadora = inventario.IdInventario })"></a></td>
+                        <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Inventario", new { IdInventario = inventario.IdInventario })"></a></td>
 
                         <td style="display :none;">@inventario.IdInventario</td>
                         <td class="text-center">@inventario.NumeroSerie</td>
@@ -62,7 +62,7 @@
                         <td class="text-center">@inventario.Modelo.Nombre</td>
                         <td style="display :none;">@inventario.DireccionEntrada.IdDireccionEntrada</td>
                         <td class="text-center">@inventario.DireccionEntrada.Nombre</td>
-                        <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Inventario", new { IdOperadora = inventario.IdInventario})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+                        <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Inventario", new { IdInventario = inventario.IdInventario})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
                     </tr>
                 }
 

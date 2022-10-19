@@ -22,31 +22,60 @@ namespace PL.Controllers
             return PartialView("Modal");
         }
         [HttpGet]
-        public ActionResult Form(int? IdUsuario)
+        public ActionResult Form(int? IdInventario)
         {
-            ML.Usuario usuario = new ML.Usuario();
-            ML.Result resultRol = BL.Rol.GetAll();
+            ML.Inventario inventario = new ML.Inventario();
+            ML.Result resultTipoEquipo = BL.TipoEquipo.GetAll();
+            inventario.TipoEquipo = new ML.TipoEquipo();
             
-            usuario.Rol = new ML.Rol();
+
+            inventario.Marca = new ML.Marca();
+            ML.Result resultMarca = BL.Marca.GetAll();
+          
+
+            ML.Result resultModelos = BL.Modelo.GetAll();
+            inventario.Modelo= new ML.Modelo();
+            inventario.Modelo.Modelos = resultModelos.Objects;
+
+
+
+            ML.Result resultDireccionEntrada = BL.DireccionEntrada.GetAll();
+            inventario.DireccionEntrada = new ML.DireccionEntrada();
+            
             //Tipo equipo
             //marca
             //modelo
             //direccionentrda
-            if (IdUsuario == null)
+            if (IdInventario == null)
             {
-                //usuario = (ML.Usuario)result.Object;
-                usuario.Rol = new ML.Rol();
-                usuario.Rol.Roles = resultRol.Objects.ToList();
-                return View(usuario);
+               
+                inventario.TipoEquipo = new ML.TipoEquipo();
+                inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
+
+                inventario.Marca = new ML.Marca();
+                inventario.Marca.Marcas = resultMarca.Objects.ToList();
+
+                inventario.DireccionEntrada = new ML.DireccionEntrada();
+                inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
+                
+                return View(inventario);
             }
             else
             {
-                ML.Result result = BL.Usuario.GetById(IdUsuario.Value);
+                ML.Result result = BL.Inventario.GetById(IdInventario.Value);
                 if (result.Correct)
                 {
-                    usuario = (ML.Usuario)result.Object;
-                    usuario.Rol.Roles = resultRol.Objects.ToList();
-                    return View(usuario);
+                  
+                    inventario = (ML.Inventario)result.Object;
+                    inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
+                    inventario.Marca.Marcas = resultMarca.Objects.ToList();
+                    inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
+                    
+
+
+                    ML.Result resultModelo = BL.Marca.MarcaGetByIdModelo(inventario.Marca.IdMarca.Value);
+                    inventario.Modelo.Modelos = resultModelo.Objects;
+                    return View(inventario);
                 }
                 else
                 {
@@ -58,15 +87,15 @@ namespace PL.Controllers
 
         [HttpPost]
 
-        public ActionResult Form(ML.Usuario usuario)
+        public ActionResult Form(ML.Inventario inventario)
         {
-            if (usuario.IdUsuario == null)
+            if (inventario.IdInventario == null)
             {
 
-                ML.Result result = BL.Usuario.Add(usuario);
+                ML.Result result = BL.Inventario.Add(inventario);
                 if (result.Correct)
                 {
-                    ViewBag.Message = "Se agrego correctamente el usuario";
+                    ViewBag.Message = "Se agrego correctamente el equipo a inventario";
                     return PartialView("Modal");
                 }
                 else
@@ -77,15 +106,15 @@ namespace PL.Controllers
             }
             else
             {
-                ML.Result result = BL.Usuario.Update(usuario);
+                ML.Result result = BL.Inventario.Update(inventario);
                 if (result.Correct)
                 {
-                    ViewBag.Message = "Se actualizo correctamente el usuario";
+                    ViewBag.Message = "Se actualizo correctamente el equipo";
                     return PartialView("Modal");
                 }
                 else
                 {
-                    ViewBag.Message = "No se pudo actualizar el usuario";
+                    ViewBag.Message = "No se pudo actualizar el equipo";
                     return PartialView("Modal");
 
                 }
@@ -93,15 +122,15 @@ namespace PL.Controllers
 
         }
         [HttpGet]
-        public ActionResult Delete(int IdUsuario)
+        public ActionResult Delete(int IdInventario)
         {
-            ML.Usuario usuario = new ML.Usuario();
-            usuario.IdUsuario = IdUsuario;
-            var result = BL.Usuario.Delete(usuario);
+            ML.Inventario inventario = new ML.Inventario();
+            inventario.IdInventario = IdInventario;
+            var result = BL.Inventario.Delete(inventario);
 
             if (result.Correct)
             {
-                ViewBag.Message = "Se elimino correctamente el usuario";
+                ViewBag.Message = "Se elimino correctamente el equipo";
 
             }
             else
@@ -115,27 +144,11 @@ namespace PL.Controllers
 
         }
 
-
-        public ActionResult UpdateEstatus(int IdUsuario)
+        public JsonResult MarcaGetByIdModelo(int IdMarca)
         {
-            ML.Result result = BL.Usuario.GetById(IdUsuario);
-            if (result.Correct)
-            {
-                ML.Usuario usuario = new ML.Usuario();
-                usuario = ((ML.Usuario)result.Object);
-                usuario.Estatus = usuario.Estatus ? false : true;
-                ML.Result resultUpdate = BL.Usuario.Update(usuario);
-                if (result.Correct)
-                {
-                    ViewBag.Message = "Se actualizo el Estatus";
-                }
-                else
-                {
-                    ViewBag.Message = "Problema al actualizar";
-                }
+            ML.Result result = BL.Marca.MarcaGetByIdModelo(IdMarca);
 
-            }
-            return PartialView("Modal");
+            return Json(result.Objects);
         }
 
     }

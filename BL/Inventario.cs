@@ -22,21 +22,21 @@ namespace BL
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[7];
+                    SqlParameter[] collection = new SqlParameter[8];
 
                     collection[0] = new SqlParameter("@NumeroSerie", SqlDbType.VarChar);
                     collection[0].Value = inventario.NumeroSerie;
 
-                    collection[1] = new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar);
+                    collection[1] = new SqlParameter("@NIAF", SqlDbType.VarChar);
                     collection[1].Value = inventario.NIAF;
 
-                    collection[2] = new SqlParameter("@ApellidoMaterno", SqlDbType.VarChar);
+                    collection[2] = new SqlParameter("@Responsable", SqlDbType.VarChar);
                     collection[2].Value = inventario.Responsable;
 
-                    collection[3] = new SqlParameter("@NombreUsuario", SqlDbType.VarChar);
+                    collection[3] = new SqlParameter("@Comentario", SqlDbType.VarChar);
                     collection[3].Value = inventario.Comentario;
 
-                    collection[4] = new SqlParameter("@TipoEquipo", SqlDbType.Int);
+                    collection[4] = new SqlParameter("@IdTipoEquipo", SqlDbType.Int);
                     collection[4].Value = inventario.TipoEquipo.IdTipoEquipo;
 
                     collection[5] = new SqlParameter("@IdMarca", SqlDbType.Int);
@@ -84,7 +84,7 @@ namespace BL
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[8];
+                    SqlParameter[] collection = new SqlParameter[9];
                     
                     collection[0] = new SqlParameter("@IdInventario", SqlDbType.Int);
                     collection[0].Value = inventario.IdInventario;
@@ -92,16 +92,16 @@ namespace BL
                     collection[1] = new SqlParameter("@NumeroSerie", SqlDbType.VarChar);
                     collection[1].Value = inventario.NumeroSerie;
 
-                    collection[2] = new SqlParameter("@ApellidoPaterno", SqlDbType.VarChar);
-                    collection[3].Value = inventario.NIAF;
+                    collection[2] = new SqlParameter("@NIAF", SqlDbType.VarChar);
+                    collection[2].Value = inventario.NIAF;
 
-                    collection[3] = new SqlParameter("@ApellidoMaterno", SqlDbType.VarChar);
+                    collection[3] = new SqlParameter("@Responsable", SqlDbType.VarChar);
                     collection[3].Value = inventario.Responsable;
 
-                    collection[4] = new SqlParameter("@NombreUsuario", SqlDbType.VarChar);
+                    collection[4] = new SqlParameter("@Comentario", SqlDbType.VarChar);
                     collection[4].Value = inventario.Comentario;
 
-                    collection[5] = new SqlParameter("@TipoEquipo", SqlDbType.Int);
+                    collection[5] = new SqlParameter("@IdTipoEquipo", SqlDbType.Int);
                     collection[5].Value = inventario.TipoEquipo.IdTipoEquipo;
 
                     collection[6] = new SqlParameter("@IdMarca", SqlDbType.Int);
@@ -302,7 +302,7 @@ namespace BL
 
                     SqlParameter[] collection = new SqlParameter[1];
 
-                    collection[0] = new SqlParameter("@IdUsuario", SqlDbType.Int);
+                    collection[0] = new SqlParameter("@IdInventario", SqlDbType.Int);
                     collection[0].Value = inventario.IdInventario;
 
                     cmd.Parameters.AddRange(collection);
