@@ -8,7 +8,8 @@ namespace ML
     {
         public int? IdEntregaEquipo { get; set; }
         public string Destino { get; set; }
-        public string RazonSocial { get; set; }
+        public string NumeroSerie{ get; set; }
+    public string RazonSocial { get; set; }
         public string Entrega { get; set; }
         public string Recibe { get; set; }
         public string NombreEquipo { get; set; }
