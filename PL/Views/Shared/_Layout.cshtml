@@ -33,43 +33,56 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="GetAll">Alta de usuarios</a>
-                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Usuarios
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                <a class="dropdown-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="GetAll">Usuarios</a>
+                                </a>
+                                <a class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Rol" asp-action="GetAll">Roles</a>
+                                </a>
+                        </div>
+
+
+
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Catalogos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                                 <a class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="PersonalAutorizacion" asp-action="GetAll">Alta de Personal que autoriza</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="PersonalAutorizacion" asp-action="GetAll">Personal que autoriza</a>
                                 </a>
                                 <a class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="PersonalEntrega" asp-action="GetAll">Alta de Personal que entrega</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="PersonalEntrega" asp-action="GetAll">Personal que entrega</a>
                                 </a>
                                 <a class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Marca" asp-action="GetAll">Alta de Marcas</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Marca" asp-action="GetAll">Marcas</a>
                                 </a>
                                 <a class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Modelo" asp-action="GetAll">Alta de Modelos</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Modelo" asp-action="GetAll">Modelos</a>
                                 </a>
                                 <a class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Operadora" asp-action="GetAll">Alta de Operadoras</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Operadora" asp-action="GetAll">Operadoras</a>
                                 </a>
                                 <a class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="DireccionEntrada" asp-action="GetAll">Alta de Direcciones de entrada</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="DireccionEntrada" asp-action="GetAll">Direcciones de entrada</a>
                                 </a>
                                 <a class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="DireccionDestino" asp-action="GetAll">Alta de Direcciones de destino</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="DireccionDestino" asp-action="GetAll">Direcciones de destino</a>
                                 </a>
                                 <a class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="TipoEquipo" asp-action="GetAll">Alta de tipos de equipo</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="TipoEquipo" asp-action="GetAll">Tipos de equipo</a>
                                 </a>
                             </div>
 
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Inventario" asp-action="GetAll">Alta de inventario</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Inventario" asp-action="GetAll">Inventario</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="EntregaEquipo" asp-action="Form">Entrega de equipos</a>

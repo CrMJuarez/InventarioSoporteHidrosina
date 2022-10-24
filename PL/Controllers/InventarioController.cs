@@ -27,54 +27,65 @@ namespace PL.Controllers
             ML.Inventario inventario = new ML.Inventario();
             ML.Result resultTipoEquipo = BL.TipoEquipo.GetAll();
             inventario.TipoEquipo = new ML.TipoEquipo();
-            
 
-            inventario.Marca = new ML.Marca();
             ML.Result resultMarca = BL.Marca.GetAll();
-          
-
-            ML.Result resultModelos = BL.Modelo.GetAll();
-            inventario.Modelo= new ML.Modelo();
-            inventario.Modelo.Modelos = resultModelos.Objects;
+            inventario.Modelo = new ML.Modelo();
+            inventario.Modelo.Marca = new ML.Marca();
 
 
+            inventario.Modelo.Marca.Marcas = resultMarca.Objects.ToList();
 
             ML.Result resultDireccionEntrada = BL.DireccionEntrada.GetAll();
             inventario.DireccionEntrada = new ML.DireccionEntrada();
-            
+
             //Tipo equipo
             //marca
             //modelo
             //direccionentrda
             if (IdInventario == null)
             {
-               
+
                 inventario.TipoEquipo = new ML.TipoEquipo();
                 inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
 
-                inventario.Marca = new ML.Marca();
-                inventario.Marca.Marcas = resultMarca.Objects.ToList();
+                //inventario.Marca = new ML.Marca();
+                //inventario.Marca.Marcas = resultMarca.Objects.ToList();
 
                 inventario.DireccionEntrada = new ML.DireccionEntrada();
                 inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
-                
+
                 return View(inventario);
             }
             else
             {
+
+
                 ML.Result result = BL.Inventario.GetById(IdInventario.Value);
+
+                //ML.Inventario inventarioo = new ML.Inventario();
+                //var postTask = BL.Inventario.GetById(IdInventario.Value);
+
+
                 if (result.Correct)
                 {
-                  
-                    inventario = (ML.Inventario)result.Object;
-                    inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
-                    inventario.Marca.Marcas = resultMarca.Objects.ToList();
-                    inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
                     
-
-
+                    inventario = (ML.Inventario)result.Object;
+                    inventario.Modelo.Marca = new ML.Marca();
                     ML.Result resultModelo = BL.Marca.MarcaGetByIdModelo(inventario.Marca.IdMarca.Value);
-                    inventario.Modelo.Modelos = resultModelo.Objects;
+
+                   //ML.Result resultMarca = BL.Marca.GetAll();
+
+                    inventario.Modelo.Marca.Marcas = resultMarca.Objects.ToList();
+
+                    inventario.Modelo.Modelos = resultModelo.Objects.ToList();                    
+                   
+                    inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();                    
+                 
+                    inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
+
+
+                
+
                     return View(inventario);
                 }
                 else
@@ -109,12 +120,12 @@ namespace PL.Controllers
                 ML.Result result = BL.Inventario.Update(inventario);
                 if (result.Correct)
                 {
-                    ViewBag.Message = "Se actualizo correctamente el equipo";
+                    ViewBag.Message = "Se actualizo correctamente el equipo a inventario";
                     return PartialView("Modal");
                 }
                 else
                 {
-                    ViewBag.Message = "No se pudo actualizar el equipo";
+                    ViewBag.Message = "No se pudo actualizar el equipo a inventario";
                     return PartialView("Modal");
 
                 }

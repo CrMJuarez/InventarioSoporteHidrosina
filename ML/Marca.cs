@@ -8,7 +8,6 @@ namespace ML
     {
         public int? IdMarca { get; set; }
         public string Nombre { get; set; }
-        public ML.Modelo Modelo { get; set; }
         public List<object> Marcas { get; set; }
     }
 }

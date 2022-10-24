@@ -38,7 +38,12 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="form-group" style="display: none;">
                         @Html.LabelFor(model => model.ApellidoPaterno, new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="control-label col-md-2">
+                            @Html.Label("Apellido Paterno")
+                        </div>
                         <div class="col-md-3">
                             @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.ApellidoPaterno)
@@ -46,7 +51,12 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="form-group" style="display: none;">
                         @Html.LabelFor(model => model.ApellidoMaterno, new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="control-label col-md-2">
+                            @Html.Label("Apellido Materno")
+                        </div>
                         <div class="col-md-3">
                             @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.ApellidoMaterno)
@@ -54,8 +64,11 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="@ViewBag.Accion" class="btn btn-success" />
+                        <div class="col-md-offset-2 col-md-2">
+                            <div class="btn-group d-flex w-100" role="group">
+                                <input type="submit" value="@ViewBag.Accion Guardar" class="btn btn-success" />
+                            @Html.ActionLink("Regresar", "GetAll", "PersonalAutorizacion", htmlAttributes: new { @class = "btn btn-danger" })
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -63,9 +76,5 @@
             }
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-offset-4 col-md-10">
-            @Html.ActionLink("Regresar", "GetAll", "PersonalAutorizacion", htmlAttributes: new { @class = "btn btn-danger" })
-        </div>
-    </div>
+   
 </div>

@@ -40,7 +40,7 @@ namespace BL
                     collection[4].Value = inventario.TipoEquipo.IdTipoEquipo;
 
                     collection[5] = new SqlParameter("@IdMarca", SqlDbType.Int);
-                    collection[5].Value = inventario.Marca.IdMarca;
+                    collection[5].Value = inventario.Modelo.Marca.IdMarca;
 
                     collection[6] = new SqlParameter("@IdModelo", SqlDbType.Int);
                     collection[6].Value = inventario.Modelo.IdModelo;

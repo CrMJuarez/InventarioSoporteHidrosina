@@ -59,7 +59,7 @@ namespace PL.Controllers
                 ML.Result result = BL.Marca.Add(marca);
                 if (result.Correct)
                 {
-                    ViewBag.Message = "Se agrego correctamente el usuario";
+                    ViewBag.Message = "Se agrego correctamente la marca";
                     return PartialView("Modal");
                 }
                 else
@@ -73,12 +73,12 @@ namespace PL.Controllers
                 ML.Result result = BL.Marca.Update(marca);
                 if (result.Correct)
                 {
-                    ViewBag.Message = "Se actualizo correctamente el usuario";
+                    ViewBag.Message = "Se actualizo correctamente la marca";
                     return PartialView("Modal");
                 }
                 else
                 {
-                    ViewBag.Message = "No se pudo actualizar el usuario";
+                    ViewBag.Message = "No se pudo actualizar la marca";
                     return PartialView("Modal");
 
                 }
@@ -94,7 +94,7 @@ namespace PL.Controllers
 
             if (result.Correct)
             {
-                ViewBag.Message = "Se elimino correctamente el usuario";
+                ViewBag.Message = "Se elimino correctamente la marca";
 
             }
             else

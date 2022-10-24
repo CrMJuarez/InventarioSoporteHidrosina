@@ -308,5 +308,78 @@ namespace BL
             return result;
         }
 
+
+
+        public static ML.Result GetByNombreUsuario(string NombreUsuario)
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
+                {
+                    string query = "UsuarioGetById";
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.CommandText = query;
+                        cmd.Connection = context;
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+
+                        SqlParameter[] collection = new SqlParameter[1];
+
+                        collection[0] = new SqlParameter("@NombreUsuario", SqlDbType.VarChar);
+                        collection[0].Value = NombreUsuario;
+
+                        cmd.Parameters.AddRange(collection);
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+
+                            DataTable usuarioTable = new DataTable();
+                            da.Fill(usuarioTable);
+                            cmd.Connection.Open();
+
+                            if (usuarioTable.Rows.Count > 0)
+                            {
+                                result.Objects = new List<object>();
+                                DataRow row1 = usuarioTable.Rows[0];
+                                ML.Usuario usuario = new ML.Usuario();
+                                usuario.IdUsuario = int.Parse(row1[0].ToString());
+                                usuario.Nombre = row1[1].ToString();
+                                usuario.ApellidoPaterno = row1[2].ToString();
+                                usuario.ApellidoMaterno = row1[3].ToString();
+                                usuario.NombreUsuario = row1[4].ToString();
+                                usuario.Contrasenia = row1[5].ToString();
+                                usuario.Estatus = bool.Parse(row1[6].ToString());
+                                usuario.Rol = new ML.Rol();
+                                usuario.Rol.IdRol = int.Parse(row1[7].ToString());
+                                usuario.Rol.Nombre = row1[8].ToString();
+                                result.Object = usuario;
+                                result.Correct = true;
+                            }
+                            else
+                            {
+                                result.Correct = false;
+                                result.ErrorMessage = "No se encontraron registros";
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+                result.Ex = ex;
+
+            }
+            return result;
+
+        }
+
+
+
     }
 }

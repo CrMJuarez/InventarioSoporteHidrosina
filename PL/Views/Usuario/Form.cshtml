@@ -24,9 +24,12 @@
                     <div class="form-group" style="display: none;">
                         @Html.LabelFor(model => model.IdUsuario, new { @class = "control-label col-md-2 hidden" })
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.IdUsuario, new { @class = "form-control hidden" })
+                            @Html.TextBoxFor(model => model.IdUsuario, new { @class = "form-control hidden"})
                             @Html.ValidationMessageFor(model => model.IdUsuario)
-                        </div>
+                          @*  @id = "txtNumeroEmpleado", @placeholder="Ejemp:0123", autocomplete = "off", @onkeypress = "return SoloNumeros(event,'lblErrorNumeroEmpleado')"})*@
+                      
+                  </div>
+                       
                     </div>
 
                     <div class="form-group">
@@ -38,7 +41,13 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="form-group" style="display: none;">
                         @Html.LabelFor(model => model.ApellidoPaterno, new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="control-label col-md-2">
+                            @Html.Label("Apellido Paterno")
+                        </div>
+
                         <div class="col-md-3">
                             @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.ApellidoPaterno)
@@ -46,7 +55,12 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="form-group" style="display: none;">
                         @Html.LabelFor(model => model.ApellidoMaterno, new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="control-label col-md-2">
+                            @Html.Label("Apellido Materno")
+                        </div>
                         <div class="col-md-3">
                             @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.ApellidoMaterno)
@@ -56,15 +70,26 @@
                  
 
                     <div class="form-group">
+                        <div class="form-group" style="display: none;">
                         @Html.LabelFor(model => model.NombreUsuario, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.NombreUsuario, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.NombreUsuario)
                         </div>
+                        <div class="control-label col-md-2">
+                            @Html.Label("Nombre Usuario")
+                        </div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.NombreUsuario, new { @class = "form-control", @id = "txtNumeroEmpleado", @placeholder="Ejemp:User23", autocomplete = "off", @onkeypress = "return SoloLetras(event,'lblErrorUsuario')" })
+                            @Html.ValidationMessageFor(model => model.NombreUsuario, null, new { @class = "text-danger"})
+                        </div>
+                        @Html.Label("", null, new {@id = "lblErrorUsuario"})
                     </div>
 
                     <div class="form-group">
+                        <div class="form-group" style="display: none;">
                         @Html.LabelFor(model => model.Contrasenia, new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="control-label col-md-2">
+                            @Html.Label("Contraseña")
+                        </div>
                         <div class="col-md-3">
                             @Html.TextBoxFor(model => model.Contrasenia, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Contrasenia)
@@ -81,8 +106,13 @@
                     <div class="form-group">
                         <div class="col-md-3" style="display: none;">
                         @Html.LabelFor(model => model.Rol.IdRol, new { @class = "control-label col-md-2" })
-                        </div>
+                       
                         @Html.LabelFor(model => model.Rol.NombreRol, new { @class = "control-label col-md-2" })
+                         </div>
+                        <div class="control-label col-md-2">
+                            @Html.Label("Rol")
+                        </div>
+
                         <div class="col-md-3">
                             @*@Html.TextBoxFor(model => model.Rol.IdRol, new { @class = "form-control" })*@
                             @*@Html.ValidationMessageFor(model => model.Rol.IdRol)*@
@@ -96,7 +126,7 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-2">
                             <div class="btn-group d-flex w-100" role="group">
-                            <input type="submit" value="@ViewBag.Accion" class="btn btn-success" />                    
+                                <input type="submit" value="@ViewBag.Accion Guardar" class="btn btn-success" />
                             @Html.ActionLink("Regresar", "GetAll", "Usuario", htmlAttributes: new { @class = "btn btn-danger" })
                     </div>
                     </div>
@@ -107,4 +137,33 @@
         </div>
     </div>
 </div>
+@section Scripts
+    {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    <script type="text/javascript">
+
+
+function SoloLetras(e,controlId)
+             {
+                  var regex = /^[a-zA-Z]+$/;
+                  var letra = e.key;
+                  if(regex.test(letra)){
+                      $('#' + controlId).css({ "color": "green" });
+                      return true;
+                  }
+                  else{
+                      $('#' + controlId).text("Solo se aceptan letras y numeros sin caracteres especiales");
+                      $('#' + controlId).css({ "color": "red" });
+                      return false;
+                  }
+              }
+              </script>
+    }

@@ -3,48 +3,46 @@ using System.Linq;
 
 namespace PL.Controllers
 {
-    public class ModeloController : Controller
+    public class RolController : Controller
     {
-         
         [HttpGet]
         public ActionResult GetAll()
         {
-            ML.Modelo modelo = new ML.Modelo();
-            ML.Result result = BL.Modelo.GetAll();
+            ML.Rol rol = new ML.Rol();
+            ML.Result result = BL.Rol.GetAll();
 
 
             if (result.Correct)
             {
-                modelo.Modelos = result.Objects.ToList();
+                rol.Roles = result.Objects.ToList();
                 //return View("PersonalJS");
-                return View(modelo);
+                return View(rol);
             }
             else
                 ViewBag.Message = "ocurrio un problema" + result.ErrorMessage;
             return PartialView("Modal");
         }
         [HttpGet]
-        public ActionResult Form(int? IdModelo)
+        public ActionResult Form(int? IdRol)
         {
-            ML.Modelo modelo = new ML.Modelo();
-            ML.Result resultmarca = BL.Marca.GetAll();
-            modelo.Marca = new ML.Marca();
+            ML.Rol rol = new ML.Rol();
+            
 
-            if (IdModelo == null)
+            if (IdRol == null)
             {
-                modelo.Marca = new ML.Marca();
-                modelo.Marca.Marcas = resultmarca.Objects.ToList();
-                return View(modelo);
+               
+               
+                return View(rol);
             }
             else
             {
-                ML.Result result = BL.Modelo.GetById(IdModelo.Value);
+                ML.Result result = BL.Rol.GetById(IdRol.Value);
                 if (result.Correct)
                 {
-                    modelo = (ML.Modelo)result.Object;
-                    modelo.Marca.Marcas = resultmarca.Objects.ToList();
+                    rol = (ML.Rol)result.Object;
                     
-                    return View(modelo);
+
+                    return View(rol);
                 }
                 else
                 {
@@ -53,18 +51,17 @@ namespace PL.Controllers
                 }
             }
         }
-
         [HttpPost]
 
-        public ActionResult Form(ML.Modelo modelo)
+        public ActionResult Form(ML.Marca marca)
         {
-            if (modelo.IdModelo == null)
+            if (marca.IdMarca == null)
             {
 
-                ML.Result result = BL.Modelo.Add(modelo);
+                ML.Result result = BL.Marca.Add(marca);
                 if (result.Correct)
                 {
-                    ViewBag.Message = "Se agrego correctamente el modelo";
+                    ViewBag.Message = "Se agrego correctamente el rol";
                     return PartialView("Modal");
                 }
                 else
@@ -75,15 +72,15 @@ namespace PL.Controllers
             }
             else
             {
-                ML.Result result = BL.Modelo.Update(modelo);
+                ML.Result result = BL.Marca.Update(marca);
                 if (result.Correct)
                 {
-                    ViewBag.Message = "Se actualizo correctamente el modelo";
+                    ViewBag.Message = "Se actualizo correctamente el rol";
                     return PartialView("Modal");
                 }
                 else
                 {
-                    ViewBag.Message = "No se pudo actualizar el modelo";
+                    ViewBag.Message = "No se pudo actualizar el rol";
                     return PartialView("Modal");
 
                 }
@@ -91,15 +88,15 @@ namespace PL.Controllers
 
         }
         [HttpGet]
-        public ActionResult Delete(int IdModelo)
+        public ActionResult Delete(int IdRol)
         {
-            ML.Modelo modelo = new ML.Modelo();
-            modelo.IdModelo = IdModelo;
-            var result = BL.Modelo.Delete(modelo);
+            ML.Rol rol = new ML.Rol();
+            rol.IdRol = IdRol;
+            var result = BL.Rol.Delete(rol);
 
             if (result.Correct)
             {
-                ViewBag.Message = "Su elimino correctamente el modelo";
+                ViewBag.Message = "Se elimino correctamente el rol";
 
             }
             else

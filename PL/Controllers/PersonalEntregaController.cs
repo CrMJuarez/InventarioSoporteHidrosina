@@ -59,7 +59,7 @@ namespace PL.Controllers
                 ML.Result result = BL.PersonalEntrega.Add(personal);
                 if (result.Correct)
                 {
-                    ViewBag.Message = "Se agrego correctamente el usuario";
+                    ViewBag.Message = "Se agrego correctamente el personal de entrega";
                     return PartialView("Modal");
                 }
                 else
@@ -73,12 +73,12 @@ namespace PL.Controllers
                 ML.Result result = BL.PersonalEntrega.Update(personal);
                 if (result.Correct)
                 {
-                    ViewBag.Message = "Se actualizo correctamente el usuario";
+                    ViewBag.Message = "Se actualizo correctamente el personal de entrega";
                     return PartialView("Modal");
                 }
                 else
                 {
-                    ViewBag.Message = "No se pudo actualizar el usuario";
+                    ViewBag.Message = "No se pudo actualizar el personal de entrega";
                     return PartialView("Modal");
 
                 }
@@ -94,7 +94,7 @@ namespace PL.Controllers
 
             if (result.Correct)
             {
-                ViewBag.Message = "Se elimino correctamente el usuario";
+                ViewBag.Message = "Se elimino correctamente el personal de entrega";
 
             }
             else

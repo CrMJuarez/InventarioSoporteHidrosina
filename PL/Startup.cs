@@ -48,6 +48,7 @@ namespace PL
                     name: "default",
                    // pattern: "{controller=Home}/{action=Index}/{id?}");
        pattern: "{controller=Usuario}/{action=GetAll}/{id?}");
+        //pattern: "{controller=Login}/{action=Login}/{id?}");
         });
         }
     }
