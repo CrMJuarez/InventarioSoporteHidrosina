@@ -10,18 +10,16 @@ namespace PL.Controllers
         {
             ML.Rol rol = new ML.Rol();
             ML.Result result = BL.Rol.GetAll();
-
-
             if (result.Correct)
             {
-                rol.Roles = result.Objects.ToList();
-                //return View("PersonalJS");
+                rol.Roles = result.Objects.ToList();              
                 return View(rol);
             }
             else
                 ViewBag.Message = "ocurrio un problema" + result.ErrorMessage;
             return PartialView("Modal");
         }
+
         [HttpGet]
         public ActionResult Form(int? IdRol)
         {
@@ -51,14 +49,14 @@ namespace PL.Controllers
                 }
             }
         }
-        [HttpPost]
 
-        public ActionResult Form(ML.Marca marca)
+        [HttpPost]
+        public ActionResult Form(ML.Rol rol)
         {
-            if (marca.IdMarca == null)
+            if (rol.IdRol == null)
             {
 
-                ML.Result result = BL.Marca.Add(marca);
+                ML.Result result = BL.Rol.Add(rol);
                 if (result.Correct)
                 {
                     ViewBag.Message = "Se agrego correctamente el rol";
@@ -72,7 +70,7 @@ namespace PL.Controllers
             }
             else
             {
-                ML.Result result = BL.Marca.Update(marca);
+                ML.Result result = BL.Rol.Update(rol);
                 if (result.Correct)
                 {
                     ViewBag.Message = "Se actualizo correctamente el rol";

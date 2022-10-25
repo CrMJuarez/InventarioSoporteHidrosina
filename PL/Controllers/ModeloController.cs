@@ -55,7 +55,6 @@ namespace PL.Controllers
         }
 
         [HttpPost]
-
         public ActionResult Form(ML.Modelo modelo)
         {
             if (modelo.IdModelo == null)
@@ -100,17 +99,13 @@ namespace PL.Controllers
             if (result.Correct)
             {
                 ViewBag.Message = "Su elimino correctamente el modelo";
-
             }
             else
             {
                 ViewBag.Message = "ocurrio un problema" + result.ErrorMessage;
-
             }
 
             return PartialView("Modal");
-
-
         }
     }
 }

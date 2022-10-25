@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PL.Controllers
 {
     public class InventarioController : Controller
     {
+     
         public ActionResult GetAll()
         {
             ML.Inventario inventario = new ML.Inventario();
@@ -38,18 +41,14 @@ namespace PL.Controllers
             ML.Result resultDireccionEntrada = BL.DireccionEntrada.GetAll();
             inventario.DireccionEntrada = new ML.DireccionEntrada();
 
-            //Tipo equipo
-            //marca
-            //modelo
-            //direccionentrda
+           
             if (IdInventario == null)
             {
 
                 inventario.TipoEquipo = new ML.TipoEquipo();
                 inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
 
-                //inventario.Marca = new ML.Marca();
-                //inventario.Marca.Marcas = resultMarca.Objects.ToList();
+              
 
                 inventario.DireccionEntrada = new ML.DireccionEntrada();
                 inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
@@ -58,22 +57,22 @@ namespace PL.Controllers
             }
             else
             {
-
+                
 
                 ML.Result result = BL.Inventario.GetById(IdInventario.Value);
 
                 //ML.Inventario inventarioo = new ML.Inventario();
                 //var postTask = BL.Inventario.GetById(IdInventario.Value);
 
-
                 if (result.Correct)
                 {
                     
                     inventario = (ML.Inventario)result.Object;
+                   
                     inventario.Modelo.Marca = new ML.Marca();
                     ML.Result resultModelo = BL.Marca.MarcaGetByIdModelo(inventario.Marca.IdMarca.Value);
 
-                   //ML.Result resultMarca = BL.Marca.GetAll();
+                   
 
                     inventario.Modelo.Marca.Marcas = resultMarca.Objects.ToList();
 

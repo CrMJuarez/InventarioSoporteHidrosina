@@ -47,8 +47,12 @@
                     <div class="form-group">
                         <div class="col-md-3" style="display: none;">
                             @Html.LabelFor(model => model.Marca.IdMarca, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Marca.Nombre, new { @class = "control-label col-md-2" })
                         </div>
-                        @Html.LabelFor(model => model.Marca.Nombre, new { @class = "control-label col-md-2" })
+                       
+                        <div class="control-label col-md-2">
+                        @Html.Label("Marcas")
+                        </div>
                         <div class="col-md-3">
                             @*@Html.TextBoxFor(model => model.Rol.IdRol, new { @class = "form-control" })*@
                             @*@Html.ValidationMessageFor(model => model.Rol.IdRol)*@
