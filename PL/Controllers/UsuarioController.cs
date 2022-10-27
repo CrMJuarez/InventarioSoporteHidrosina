@@ -8,6 +8,8 @@ namespace PL.Controllers
 {
     public class UsuarioController : Controller
     {
+      
+
         public ActionResult GetAll()
         {
             ML.Usuario usuario = new ML.Usuario();

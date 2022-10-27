@@ -318,7 +318,7 @@ namespace BL
 
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
-                    string query = "UsuarioGetById";
+                    string query = "GetByNombreUsuario";
                     using (SqlCommand cmd = new SqlCommand())
                     {
                         cmd.CommandText = query;

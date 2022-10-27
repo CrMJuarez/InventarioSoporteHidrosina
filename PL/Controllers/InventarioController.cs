@@ -30,9 +30,10 @@ namespace PL.Controllers
             ML.Inventario inventario = new ML.Inventario();
             ML.Result resultTipoEquipo = BL.TipoEquipo.GetAll();
             inventario.TipoEquipo = new ML.TipoEquipo();
-
-            ML.Result resultMarca = BL.Marca.GetAll();
+            ML.Result resultModelos = BL.Modelo.GetAll();
             inventario.Modelo = new ML.Modelo();
+            ML.Result resultMarca = BL.Marca.GetAll();
+            
             inventario.Modelo.Marca = new ML.Marca();
 
 
@@ -47,9 +48,6 @@ namespace PL.Controllers
 
                 inventario.TipoEquipo = new ML.TipoEquipo();
                 inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
-
-              
-
                 inventario.DireccionEntrada = new ML.DireccionEntrada();
                 inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
 
@@ -81,9 +79,6 @@ namespace PL.Controllers
                     inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();                    
                  
                     inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
-
-
-                
 
                     return View(inventario);
                 }

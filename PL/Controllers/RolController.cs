@@ -24,7 +24,6 @@ namespace PL.Controllers
         public ActionResult Form(int? IdRol)
         {
             ML.Rol rol = new ML.Rol();
-            
 
             if (IdRol == null)
             {

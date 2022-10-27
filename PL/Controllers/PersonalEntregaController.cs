@@ -95,7 +95,6 @@ namespace PL.Controllers
             if (result.Correct)
             {
                 ViewBag.Message = "Se elimino correctamente el personal de entrega";
-
             }
             else
             {
