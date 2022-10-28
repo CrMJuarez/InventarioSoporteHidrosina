@@ -88,10 +88,10 @@
                         <div class="control-label col-md-2">
                             @Html.Label("Marcas")
                         </div>
-                            <div class="col-md-3">
-                                @Html.DropDownListFor(model => model.Modelo.Marca.IdMarca, new SelectList(Model.Modelo.Marca.Marcas, "IdMarca", "Nombre"), "Selecciona una opcion", new { @class = "form-control", @id = "ddlMarca" })
-                            </div>
-                        
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.Modelo.Marca.IdMarca, new SelectList(Model.Modelo.Marca.Marcas, "IdMarca", "Nombre"), "Selecciona una opcion", new { @class = "form-control", @id = "ddlMarca" })
+                        </div>
+
                     </div>
                     <div class="form-group">
 
@@ -108,10 +108,10 @@
                             {
 
                                 @Html.DropDownListFor(model => model.Modelo.IdModelo, new SelectList(Model.Modelo.Modelos, "IdModelo", "Nombre"), "Selecciona una opción", new { @class = "form-control", @id = "ddlModelo" })
-                               
-                         
-        
-                              
+
+
+
+
                             }
 
                         </div>
@@ -123,7 +123,7 @@
                         @Html.LabelFor(model => model.Modelo.Descripcion, new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
                             @Html.TextBoxFor(model => model.Modelo.Descripcion, new { @class = "form-control", @id = "txtDescripcion" })
-                         
+
                         </div>
                     </div>
 
@@ -193,23 +193,23 @@
         });
 
 
-        //function LlenarDescripcion() {
-        //    if ($("#ddlModelo option:selected").val() != "0") {
-        //        var pmtPeticion = new Object();
-        //        pmtPeticion.Id = $("#ddlModelo option:selected").val();
-        //        $.ajax
-        //            ({
-        //                type: 'POST',
-        //                data: pmtPeticion,
-        //                url: urlMostrarCModelo,
-        //                success: function (data) {
-        //                    $('#txtDescripcion').val(data.LsCuerpo[0].Descripcion);
-        //                }
-        //            });
-        //    }
-        //}
+                //function LlenarDescripcion() {
+                //    if ($("#ddlModelo option:selected").val() != "0") {
+                //        var pmtPeticion = new Object();
+                //        pmtPeticion.Id = $("#ddlModelo option:selected").val();
+                //        $.ajax
+                //            ({
+                //                type: 'POST',
+                //                data: pmtPeticion,
+                //                url: urlMostrarCModelo,
+                //                success: function (data) {
+                //                    $('#txtDescripcion').val(data.LsCuerpo[0].Descripcion);
+                //                }
+                //            });
+                //    }
+                //}
 
-       
+
 
 
 

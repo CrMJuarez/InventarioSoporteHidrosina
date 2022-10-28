@@ -55,13 +55,13 @@
 *@
                         <td style="display :none;">@entregaEquipo.IdEntregaEquipo</td>
 
-                        <td class="text-center">@entregaEquipo.Destino</td>
+                       @* <td class="text-center">@entregaEquipo.Destino</td>
                         <td style="text-center">@entregaEquipo.RazonSocial</td>
                         <td class="text-center">@entregaEquipo.Entrega</td>
                         <td class="text-center">@entregaEquipo.Recibe</td>
                         <td style="text-center">@entregaEquipo.NombreEquipo</td>
                         <td class="text-center">@entregaEquipo.Justificacion</td>
-                        <td class="text-center">@entregaEquipo.Autorizacion</td>
+                        <td class="text-center">@entregaEquipo.Autorizacion</td>*@
                        <td class="text-center"><a class = "btn btn-success" href="@Url.Action("Entrega", "EntregaEquipo", new { IdEntregaEquipo = entregaEquipo.IdEntregaEquipo})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
                   </tr>
                 }
