@@ -12,12 +12,35 @@ namespace PL.Controllers
         //    return View(entregaEquipo);
 
         //}
-        public ActionResult Form(int? IdEntregaEquipo)
+        public ActionResult Form()
         {
             ML.EntregaEquipo entregaEquipo = new ML.EntregaEquipo();
+            ML.Result result = BL.EntregaEquipo.GetAll();
 
-            return View(entregaEquipo);
+            ML.Result resultdireccionDestino = BL.DireccionDestino.GetAll();
+            entregaEquipo.direccionDestino = new ML.DireccionDestino();
+            entregaEquipo.direccionDestino.Direcciones = resultdireccionDestino.Objects.ToList();
+           
+
+
+
+
+
+
+            if (result.Correct)
+            {
+                entregaEquipo.Entregas = result.Objects.ToList();
+
+                return View(entregaEquipo);
+            }
+            else
+            {
+                ViewBag.Message = "ocurrio un problema" + result.ErrorMessage;
+
+                return PartialView("Modal");
+            }
         }
     }
 }
+
 

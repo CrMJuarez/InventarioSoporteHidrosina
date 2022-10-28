@@ -129,7 +129,8 @@ namespace BL
                             result.Objects.Add(entregaEquipo);
 
 
-                        }
+                        } 
+
                         result.Correct = true;
                     }
                     else

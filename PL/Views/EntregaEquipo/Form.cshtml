@@ -13,8 +13,7 @@
             </div>
         </div>
     </div>
-    @* <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/Usuario/UsuarioJS.js"></script>*@
+   
     <div class="row">
         <div class="col-md-12">
             @using (Html.BeginForm("Form", "EntregaEquipo", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -28,9 +27,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            @*@Html.TextBoxFor(model => model.Rol.IdRol, new { @class = "form-control" })*@
-                            @*@Html.ValidationMessageFor(model => model.Rol.IdRol)*@
-                            @* aqui va el Drop Down List *@
+                           
                             @Html.DropDownListFor(model => model.direccionDestino.IdDireccionDestino, new SelectList(Model.direccionDestino.Direcciones, "IdDireccionDestino", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
 
 
