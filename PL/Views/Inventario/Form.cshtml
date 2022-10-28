@@ -31,8 +31,8 @@
 
                     <div class="form-group">
                         <div class="form-group" style="display: none;">
-                        @Html.LabelFor(model => model.NumeroSerie, new { @class = "control-label col-md-2" })
-                         </div>
+                            @Html.LabelFor(model => model.NumeroSerie, new { @class = "control-label col-md-2" })
+                        </div>
                         <div class="control-label col-md-2">
                             @Html.Label("Numero de serie")
                         </div>
@@ -75,64 +75,55 @@
                             @Html.LabelFor(model => model.TipoEquipo.Nombre, new { @class = "control-label col-md-2" })
                         </div>
                         <div class="control-label col-md-2">
-                        @Html.Label("Equipos")
+                            @Html.Label("Equipos")
                         </div>
                         <div class="col-md-3">
 
-                        @Html.DropDownListFor(model => model.TipoEquipo.IdTipoEquipo, new SelectList(Model.TipoEquipo.Equipos, "IdTipoEquipo", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.TipoEquipo.IdTipoEquipo, new SelectList(Model.TipoEquipo.Equipos, "IdTipoEquipo", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        <div class="col-md-3" style="display: none;">
-                            @Html.LabelFor(model => model.Modelo.Marca.IdMarca, new { @class = "control-label col-md-2" })
-                            @Html.LabelFor(model => model.Modelo.Marca.Nombre, new { @class = "control-label col-md-2" })
-                        </div>
                         <div class="control-label col-md-2">
-                        @Html.Label("Marcas")
+                            @Html.Label("Marcas")
                         </div>
-                        <div class="col-md-3">
-
-                            @Html.DropDownListFor(model => model.Modelo.Marca.IdMarca, new SelectList(Model.Modelo.Marca.Marcas, "IdMarca", "Nombre"), "Selecciona una opcion", new { @class = "form-control", @id = "ddlMarca" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                       
-                            @Html.LabelFor(model => model.Modelo.Modelos, new { @class = "control-label col-md-2" })
-                       
-                            <div class="col-md-3" style="display: none;">
-                                @Html.LabelFor(model => model.Modelo.IdModelo, new { @class = "control-label col-md-2" })
-                                @Html.TextBoxFor(model => model.Modelo.IdModelo, new { @class = "form-control" })
-                            </div>
-
-
-                        @if (Model.Modelo.Modelos == null)
-            {
-                        <div class="col-md-3">
-                            @Html.DropDownListFor(model => model.Modelo.IdModelo, new SelectList(string.Empty, "Value", "Text"), "Selecciona una opción", new { @class = "form-control", @id = "ddlModelo" })
-                            @Html.ValidationMessageFor(model => model.Modelo.IdModelo)
-                        </div>
-            }
-            else
-            {
                             <div class="col-md-3">
-                            @Html.DropDownListFor(model => model.Modelo.IdModelo, new SelectList(Model.Modelo.Modelos, "IdModelo", "Nombre"), "Selecciona una opción", new { @class = "form-control", @id = "ddlModelo" })
-                @Html.ValidationMessageFor(model => model.Modelo.IdModelo)
+                                @Html.DropDownListFor(model => model.Modelo.Marca.IdMarca, new SelectList(Model.Modelo.Marca.Marcas, "IdMarca", "Nombre"), "Selecciona una opcion", new { @class = "form-control", @id = "ddlMarca" })
                             </div>
-            }
+                        
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.Modelo.Modelos, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @if (Model.Modelo.Modelos == null)
+                            {
+
+                                @Html.DropDownListFor(model => model.Modelo.IdModelo, new SelectList(string.Empty, "Value", "Text"), "Selecciona una opción", new { @class = "form-control", @id = "ddlModelo" })
 
 
-                       
+                            }
+                            else
+                            {
+
+                                @Html.DropDownListFor(model => model.Modelo.IdModelo, new SelectList(Model.Modelo.Modelos, "IdModelo", "Nombre"), "Selecciona una opción", new { @class = "form-control", @id = "ddlModelo" })
+                               
+                         
+        
+                              
+                            }
+
+                        </div>
+
                     </div>
 
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Modelo.Descripcion, new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.Modelo.Descripcion, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Modelo.Descripcion)
+                            @Html.TextBoxFor(model => model.Modelo.Descripcion, new { @class = "form-control", @id = "txtDescripcion" })
+                         
                         </div>
                     </div>
 
@@ -165,40 +156,63 @@
 
 @section Scripts
     {
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
         $(document).ready(function () {
-                   $("#ddlMarca").change(function () {
-                       $("#ddlModelo").empty();
-                       $.ajax({
-                           type: 'GET',
-                           url: '@Url.Action("MarcaGetByIdModelo")',
-                           dataType: 'json',
-                           data: { IdMarca: $("#ddlMarca").val() },
-                           success: function (modelos) {
-                               $("#ddlModelo").append('<option value="0">'+ 'Seleccione una opción' + '</option>');
+            $("#ddlMarca").change(function () {
+                $("#ddlModelo").empty();
+                //$("#txtDescripcion").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("MarcaGetByIdModelo")',
+                    dataType: 'json',
+                    data: { idMarca: $("#ddlMarca").val() },
+                    success: function (modelos) {
+                        $("#ddlModelo").append('<option value="0">' + 'Seleccione una opción' + '</option>');
                         $.each(modelos, function (i, modelos) {
-                                   $("#ddlModelo").append('<option value="'
+                            $("#ddlModelo").append('<option value="'
                                 + modelos.idModelo + '">'
-                                + modelos.nombre + '</option>');
-                               });
-                           },
-                           error: function (ex) {
-                               alert('Failed.' + ex);
-                           }
-                       });
-                   });
-               });
-         
-               
+                                + modelos.nombre + '</option>'
+                                + modelos.descripcion);
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed.' + ex);
+                    }
+                });
+            });
+        });
+
+
+        //function LlenarDescripcion() {
+        //    if ($("#ddlModelo option:selected").val() != "0") {
+        //        var pmtPeticion = new Object();
+        //        pmtPeticion.Id = $("#ddlModelo option:selected").val();
+        //        $.ajax
+        //            ({
+        //                type: 'POST',
+        //                data: pmtPeticion,
+        //                url: urlMostrarCModelo,
+        //                success: function (data) {
+        //                    $('#txtDescripcion').val(data.LsCuerpo[0].Descripcion);
+        //                }
+        //            });
+        //    }
+        //}
+
+       
+
+
+
+
     </script>
     }

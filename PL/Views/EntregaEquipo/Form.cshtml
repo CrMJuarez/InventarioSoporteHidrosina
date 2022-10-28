@@ -22,13 +22,35 @@
                 <div class="form-horizontal">
 
                     <div class="form-group" style="display: none;">
-                        @Html.LabelFor(model => model.Destino, new { @class = "control-label col-md-2 hidden" })
-                        <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.Destino, new { @class = "form-control hidden" })
-                            @Html.ValidationMessageFor(model => model.Destino)
-                        </div>
+                        @Html.LabelFor(model => model.direccionDestino.IdDireccionDestino, new { @class = "control-label col-md-2 hidden" })
+                       <div class="control-label col-md-2">
+                            @Html.Label("Destino")
                     </div>
-                    <div class="form-group">
+
+                        <div class="col-md-3">
+                            @*@Html.TextBoxFor(model => model.Rol.IdRol, new { @class = "form-control" })*@
+                            @*@Html.ValidationMessageFor(model => model.Rol.IdRol)*@
+                            @* aqui va el Drop Down List *@
+                            @Html.DropDownListFor(model => model.direccionDestino.IdDireccionDestino, new SelectList(Model.direccionDestino.Direcciones, "IdDireccionDestino", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+
+
+                        </div>
+
+
+                    </div>
+
+                   
+
+
+
+
+
+
+
+
+
+
+                    @*<div class="form-group">
                         @Html.LabelFor(model => model.Destino, new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
                             @Html.TextBoxFor(model => model.Destino, new { @class = "form-control" })
@@ -105,7 +127,7 @@
                             @Html.TextBoxFor(model => model.Autorizacion, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Autorizacion)
                         </div>
-                    </div>
+                    </div>*@
 
                     
 

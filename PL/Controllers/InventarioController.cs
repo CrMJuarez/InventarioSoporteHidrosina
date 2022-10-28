@@ -28,19 +28,21 @@ namespace PL.Controllers
         public ActionResult Form(int? IdInventario)
         {
             ML.Inventario inventario = new ML.Inventario();
+
             ML.Result resultTipoEquipo = BL.TipoEquipo.GetAll();
             inventario.TipoEquipo = new ML.TipoEquipo();
-            ML.Result resultModelos = BL.Modelo.GetAll();
-            inventario.Modelo = new ML.Modelo();
-            ML.Result resultMarca = BL.Marca.GetAll();
-            
-            inventario.Modelo.Marca = new ML.Marca();
-
-
-            inventario.Modelo.Marca.Marcas = resultMarca.Objects.ToList();
+            //ML.Result resultModelos = BL.Modelo.GetAll()         
 
             ML.Result resultDireccionEntrada = BL.DireccionEntrada.GetAll();
             inventario.DireccionEntrada = new ML.DireccionEntrada();
+            ML.Result resultMarca = BL.Marca.GetAll();
+            inventario.Modelo = new ML.Modelo();
+
+            inventario.Modelo.Marca = new ML.Marca();
+
+            //inventario.Modelo.Modelos = resultModelos.Objects.ToList();
+            inventario.Modelo.Marca.Marcas = resultMarca.Objects;
+
 
            
             if (IdInventario == null)
@@ -59,25 +61,31 @@ namespace PL.Controllers
 
                 ML.Result result = BL.Inventario.GetById(IdInventario.Value);
 
-                //ML.Inventario inventarioo = new ML.Inventario();
-                //var postTask = BL.Inventario.GetById(IdInventario.Value);
-
+         
+                
                 if (result.Correct)
                 {
-                    
-                    inventario = (ML.Inventario)result.Object;
+
+
                    
+
+                    
+                    inventario = ((ML.Inventario)result.Object);
+
+                    inventario.Modelo = new ML.Modelo();
                     inventario.Modelo.Marca = new ML.Marca();
+
+
                     ML.Result resultModelo = BL.Marca.MarcaGetByIdModelo(inventario.Marca.IdMarca.Value);
 
-                   
+
 
                     inventario.Modelo.Marca.Marcas = resultMarca.Objects.ToList();
+                    
+                    inventario.Modelo.Modelos = resultModelo.Objects.ToList();
 
-                    inventario.Modelo.Modelos = resultModelo.Objects.ToList();                    
-                   
-                    inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();                    
-                 
+                    inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
+
                     inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
 
                     return View(inventario);
@@ -155,6 +163,5 @@ namespace PL.Controllers
 
             return Json(result.Objects);
         }
-
     }
 }

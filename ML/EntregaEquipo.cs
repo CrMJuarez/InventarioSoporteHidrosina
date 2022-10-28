@@ -7,14 +7,13 @@ namespace ML
     public class EntregaEquipo
     {
         public int? IdEntregaEquipo { get; set; }
-        public string Destino { get; set; }
-        public string NumeroSerie{ get; set; }
-    public string RazonSocial { get; set; }
-        public string Entrega { get; set; }
-        public string Recibe { get; set; }
-        public string NombreEquipo { get; set; }
+        public ML.DireccionDestino direccionDestino { get; set; }
+        public ML.PersonalEntrega personalEntrega { get; set; }
+        public ML.PersonalAutorizacion personalAutorizacion { get; set; }
+        public ML.Operadora operadora { get; set; }
+        public ML.Inventario inventario { get; set; }       
+        public string Recibe { get; set; }  
         public string Justificacion { get; set; }
-        public string Autorizacion { get; set; }
         public List<object> Entregas { get; set; }
     }
 }
