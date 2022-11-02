@@ -21,6 +21,14 @@
                 <div class="form-horizontal">
 
                     <div class="form-group" style="display: none;">
+                        @Html.LabelFor(model => model.IdEntregaEquipo, new { @class = "control-label col-md-2 hidden" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.IdEntregaEquipo, new { @class = "form-control hidden" })
+                            @Html.ValidationMessageFor(model => model.IdEntregaEquipo)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         @Html.LabelFor(model => model.direccionDestino.IdDireccionDestino, new { @class = "control-label col-md-2 hidden" })
                         <div class="control-label col-md-2">
                             @Html.Label("Destino")
@@ -36,6 +44,67 @@
 
                     </div>
 
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.personalEntrega.IdPersonalEntrega, new { @class = "control-label col-md-2 hidden" })
+                        <div class="control-label col-md-2">
+                            @Html.Label("Personal que entrega")
+                        </div>
+
+                        <div class="col-md-3">
+
+                            @Html.DropDownListFor(model => model.personalEntrega.IdPersonalEntrega, new SelectList(Model.personalEntrega.Personales, "IdPersonalEntrega", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.personalAutorizacion.IdPersonalAutorizacion, new { @class = "control-label col-md-2 hidden" })
+                        <div class="control-label col-md-2">
+                            @Html.Label("Personal que autoriza")
+                        </div>
+
+                        <div class="col-md-3">
+
+                            @Html.DropDownListFor(model => model.personalAutorizacion.IdPersonalAutorizacion, new SelectList(Model.personalAutorizacion.Personales, "IdPersonalAutorizacion", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.operadora.IdOperadora, new { @class = "control-label col-md-2 hidden" })
+                        <div class="control-label col-md-2">
+                            @Html.Label("Operadora")
+                        </div>
+
+                        <div class="col-md-3">
+
+                            @Html.DropDownListFor(model => model.operadora.IdOperadora, new SelectList(Model.operadora.Operadoras, "IdOperadora", "NombreCorto"), "Selecciona una opcion", new { @class = "form-control" })
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.inventario.IdInventario, new { @class = "control-label col-md-2 hidden" })
+                        <div class="control-label col-md-2">
+                            @Html.Label("Equipo a entregar")
+                        </div>
+
+                        <div class="col-md-3">
+
+                            @Html.DropDownListFor(model => model.inventario.IdInventario, new SelectList(Model.inventario.Inventarios, "IdInventario", "NumeroSerie"), "Selecciona una opcion", new { @class = "form-control" })
+
+                        </div>
+
+                    </div>
 
 
 
@@ -46,93 +115,28 @@
 
 
 
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Recibe, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.Recibe, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Recibe)
+                        </div>
+                    </div>
 
-                    @*<div class="form-group">
-                @Html.LabelFor(model => model.Destino, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                @Html.TextBoxFor(model => model.Destino, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Destino)
-                </div>
-                </div>
-                <div class="form-group">
-                <div class="col-md-3" style="display: none;">
-                @Html.LabelFor(model => model.RazonSocial, new { @class = "control-label col-md-2" })
-                </div>
-                <div class="control-label col-md-2">
-                @Html.Label("Razon social")
-                </div>
-                <div class="col-md-3">
-                @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.RazonSocial)
-                </div>
-                </div>
-
-                <div class="form-group">
-                @Html.LabelFor(model => model.Entrega, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                @Html.TextBoxFor(model => model.Entrega, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Entrega)
-                </div>
-                </div>
-
-                <div class="form-group">
-                @Html.LabelFor(model => model.Recibe, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                @Html.TextBoxFor(model => model.Recibe, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Recibe)
-                </div>
-                </div>
-
-
-
-                <div class="form-group">
-                <div class="col-md-3" style="display: none;">
-                @Html.LabelFor(model => model.NombreEquipo, new { @class = "control-label col-md-2" })
-                </div>
-                <div class="control-label col-md-2">
-                @Html.Label("Equipo")
-                </div>
-                <div class="col-md-3">
-                @Html.TextBoxFor(model => model.NombreEquipo, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.NombreEquipo)
-                </div>
-                </div>
-                <div class="form-group">
-                <div class="col-md-3" style="display: none;">
-                @Html.LabelFor(model => model.NumeroSerie, new { @class = "control-label col-md-2" })
-                </div>
-                <div class="control-label col-md-2">
-                @Html.Label("Numero de serie")
-                </div>
-                <div class="col-md-3">
-                @Html.TextBoxFor(model => model.NumeroSerie, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.NumeroSerie)
-                </div>
-                </div>
-
-                <div class="form-group">
-                @Html.LabelFor(model => model.Justificacion, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                @Html.TextBoxFor(model => model.Justificacion, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Justificacion)
-                </div>
-                </div>
-
-                <div class="form-group">
-                @Html.LabelFor(model => model.Autorizacion, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                @Html.TextBoxFor(model => model.Autorizacion, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Autorizacion)
-                </div>
-                </div>*@
-
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Justificacion, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.Justificacion, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Justificacion)
+                        </div>
+                    </div>
 
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-2">
                             <div class="btn-group d-flex w-100" role="group">
                                 <input type="submit" value="@ViewBag.Accion Entregar" class="btn btn-success" />
-                                @Html.ActionLink("Regresar", "GetAll", "EntregaEquipo", htmlAttributes: new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Historial", "GetAll", "EntregaEquipo", htmlAttributes: new { @class = "btn btn-danger" })
                             </div>
                         </div>
                     </div>

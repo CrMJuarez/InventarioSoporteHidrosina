@@ -132,7 +132,6 @@ namespace PL.Controllers
 
                 }
             }
-
         }
         [HttpGet]
         public ActionResult Delete(int IdInventario)
@@ -144,12 +143,10 @@ namespace PL.Controllers
             if (result.Correct)
             {
                 ViewBag.Message = "Se elimino correctamente el equipo";
-
             }
             else
             {
                 ViewBag.Message = "ocurrio un problema" + result.ErrorMessage;
-
             }
 
             return PartialView("Modal");
