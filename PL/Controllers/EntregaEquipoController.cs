@@ -6,7 +6,24 @@ namespace PL.Controllers
 {
     public class EntregaEquipoController : Controller
     {
-       
+        [HttpGet]
+        public ActionResult GetAll()
+        {
+            ML.EntregaEquipo entregaEquipo = new ML.EntregaEquipo();
+            ML.Result result = BL.EntregaEquipo.GetAll();
+
+
+            if (result.Correct)
+            {
+                entregaEquipo.Entregas = result.Objects.ToList();
+                //return View("PersonalJS");
+                return View(entregaEquipo);
+            }
+            else
+                ViewBag.Message = "ocurrio un problema" + result.ErrorMessage;
+            return PartialView(entregaEquipo);
+        }
+
         [HttpGet]
         public ActionResult Form()
         {
@@ -31,7 +48,7 @@ namespace PL.Controllers
                 entregaEquipo.operadora.Operadoras = resultOperadora.Objects.ToList();
                 entregaEquipo.inventario = new ML.Inventario();
                 entregaEquipo.inventario.Inventarios = resultInventario.Objects.ToList();
-             
+                
                 return View(entregaEquipo);
             }
             else
@@ -51,7 +68,7 @@ namespace PL.Controllers
                 if (result.Correct)
                 {
                     ViewBag.Message = "Equipo entregado";
-                    //return PartialView("Modal");
+                    return PartialView("Modal");
                 }
                 else
                 {
@@ -59,7 +76,7 @@ namespace PL.Controllers
                     return PartialView("Modal");
                 }
             }                       
-                return PartialView("Modal");         
+                return PartialView(entregaEquipo);         
         }
     }
 }

@@ -100,7 +100,7 @@
 
                         <div class="col-md-3">
 
-                            @Html.DropDownListFor(model => model.inventario.IdInventario, new SelectList(Model.inventario.Inventarios, "IdInventario", "NumeroSerie"), "Selecciona una opcion", new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.inventario.NumeroSerie, new SelectList(Model.inventario.Inventarios, "NumeroSerie", "NumeroSerie"), "Selecciona una opcion", new { @class = "form-control" })
 
                         </div>
 
@@ -136,7 +136,7 @@
                         <div class="col-md-offset-2 col-md-2">
                             <div class="btn-group d-flex w-100" role="group">
                                 <input type="submit" value="@ViewBag.Accion Entregar" class="btn btn-success" />
-                                @Html.ActionLink("Historial", "GetAll", "EntregaEquipo", htmlAttributes: new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Historial", "GetAll", "EntregaEquipo", htmlAttributes: new { @class = "btn btn-warning" })
                             </div>
                         </div>
                     </div>

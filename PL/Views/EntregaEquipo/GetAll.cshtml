@@ -5,21 +5,21 @@
 }
 <div class="container">
     <div class="row">
-        <h2>Entrega de equipos</h2>
+        <h2>Historial de equipos entregados.</h2>
     </div>
 
-    <div class="row">
+   @* <div class="row">
         <div class="col-md-8">
-            <h5>Seleccione un equipo en inventario para entrega</h5>
+            <h5>Equipos entregados.</h5>
             <hr />
         </div>
-    </div>
+    </div>*@
     <div style="float:right;">
-        @Html.ActionLink("+", "Form", "EntregaEquipo", htmlAttributes: new { @class = "btn btn-success" })
+        @Html.ActionLink("Regresar", "Form", "EntregaEquipo", htmlAttributes: new { @class = "btn btn-danger" })
     </div>
     @if (Model.Entregas == null)
     {
-        <div class="p-3 mb-2 bg-danger text-white">Aun no hay equipos en inventario</div>
+        <div class="p-3 mb-2 bg-danger text-white">Aun no hay equipos entregados</div>
     }
     else
     {
@@ -34,17 +34,17 @@
 
                     <td style="display :none;">IdEntregaEquipo</td>
                     <td class="text-center">Destino</td>
-                    <td class="text-center">Razon Social</td>
-                    <td class="text-center">Entrega</td>
-                    <td class="text-center">Recibe</td>
-                    <td class="text-center">Equipo en inventario</td>
-                    <td class="text-center">Justificacion</td>
-                    <td class="text-center">Autorizacion</td>
+                    <td class="text-center">Operadora</td>
+                    <td class="text-center">Entregó</td>
+                    <td class="text-center">Recibió</td>
+                    <td class="text-center">Numero de serie de equipo entregado</td>
+                    <td class="text-center">Justificación</td>
+                    <td class="text-center">Autorizó</td>
                     @*<td class="text-center">ApellidoPaterno</td>
                 <td class="text-center">ApellidoMaterno</td>*@
 
-
-                    <td class="text-center">Entrega</td>
+@*
+                    <td class="text-center">Entrega</td>*@
                 </tr>
             </thead>
             <tbody>
@@ -55,14 +55,14 @@
 *@
                         <td style="display :none;">@entregaEquipo.IdEntregaEquipo</td>
 
-                       @* <td class="text-center">@entregaEquipo.Destino</td>
-                        <td style="text-center">@entregaEquipo.RazonSocial</td>
-                        <td class="text-center">@entregaEquipo.Entrega</td>
+                        <td class="text-center">@entregaEquipo.direccionDestino.Nombre</td>
+                        <td style="text-center">@entregaEquipo.operadora.RazonSocial</td>
+                        <td class="text-center">@entregaEquipo.personalEntrega.Nombre @entregaEquipo.personalEntrega.ApellidoPaterno @entregaEquipo.personalEntrega.ApellidoMaterno</td>
                         <td class="text-center">@entregaEquipo.Recibe</td>
-                        <td style="text-center">@entregaEquipo.NombreEquipo</td>
+                        <td style="text-center">@entregaEquipo.inventario.NumeroSerie</td>
                         <td class="text-center">@entregaEquipo.Justificacion</td>
-                        <td class="text-center">@entregaEquipo.Autorizacion</td>*@
-                       <td class="text-center"><a class = "btn btn-success" href="@Url.Action("Entrega", "EntregaEquipo", new { IdEntregaEquipo = entregaEquipo.IdEntregaEquipo})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+                        <td class="text-center">@entregaEquipo.personalAutorizacion.Nombre @entregaEquipo.personalAutorizacion.ApellidoPaterno @entregaEquipo.personalAutorizacion.ApellidoMaterno</td>
+                     @*  <td class="text-center"><a class = "btn btn-success" href="@Url.Action("Regresar", "EntregaEquipo", new { IdEntregaEquipo = entregaEquipo.IdEntregaEquipo})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>*@
                   </tr>
                 }
 

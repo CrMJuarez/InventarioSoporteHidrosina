@@ -38,8 +38,8 @@ namespace BL
                     collection[4] = new SqlParameter("@IdOperadora", SqlDbType.Int);
                     collection[4].Value = entregaEquipo.operadora.IdOperadora;
 
-                    collection[5] = new SqlParameter("@IdInventario", SqlDbType.Int);
-                    collection[5].Value = entregaEquipo.inventario.IdInventario;
+                    collection[5] = new SqlParameter("@NumeroSerie", SqlDbType.VarChar);
+                    collection[5].Value = entregaEquipo.inventario.NumeroSerie;
 
                     collection[6] = new SqlParameter("@IdPersonalAutorizacion", SqlDbType.Int);
                     collection[6].Value = entregaEquipo.personalAutorizacion.IdPersonalAutorizacion;                   
@@ -68,7 +68,7 @@ namespace BL
 
         }
         public static ML.Result GetAll()
-        {
+         {
             ML.Result result = new ML.Result();
 
             try
@@ -103,29 +103,33 @@ namespace BL
                             entregaEquipo.direccionDestino.Nombre = row[4].ToString();
 
 
+
                             entregaEquipo.personalEntrega = new ML.PersonalEntrega();
                             entregaEquipo.personalEntrega.IdPersonalEntrega = int.Parse(row[5].ToString());
                             entregaEquipo.personalEntrega.Nombre = row[6].ToString();
                             entregaEquipo.personalEntrega.ApellidoPaterno = row[7].ToString();
                             entregaEquipo.personalEntrega.ApellidoMaterno = row[8].ToString();
 
-
-                            entregaEquipo.personalAutorizacion = new ML.PersonalAutorizacion();
-                            entregaEquipo.personalAutorizacion.IdPersonalAutorizacion = int.Parse(row[9].ToString());
-                            entregaEquipo.personalAutorizacion.Nombre = row[10].ToString();
-                            entregaEquipo.personalAutorizacion.ApellidoPaterno = row[11].ToString();
-                            entregaEquipo.personalAutorizacion.ApellidoMaterno = row[12].ToString();
-
-
-
                             entregaEquipo.operadora = new ML.Operadora();
-                            entregaEquipo.operadora.IdOperadora = int.Parse(row[13].ToString());
-                            entregaEquipo.operadora.NombreCorto = row[14].ToString();
+                            entregaEquipo.operadora.IdOperadora = int.Parse(row[9].ToString());
+                            entregaEquipo.operadora.RazonSocial = row[10].ToString();
 
 
                             entregaEquipo.inventario = new ML.Inventario();
-                            entregaEquipo.inventario.IdInventario = int.Parse(row[15].ToString());
-                            entregaEquipo.inventario.NumeroSerie = row[16].ToString();
+                            entregaEquipo.inventario.NumeroSerie = row[11].ToString();
+
+
+                            entregaEquipo.personalAutorizacion = new ML.PersonalAutorizacion();
+                            entregaEquipo.personalAutorizacion.IdPersonalAutorizacion = int.Parse(row[12].ToString());
+                            entregaEquipo.personalAutorizacion.Nombre = row[13].ToString();
+                            entregaEquipo.personalAutorizacion.ApellidoPaterno = row[14].ToString();
+                            entregaEquipo.personalAutorizacion.ApellidoMaterno = row[15].ToString();
+
+
+
+                            
+
+
                             result.Objects.Add(entregaEquipo);
 
 

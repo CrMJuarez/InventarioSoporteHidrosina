@@ -87,6 +87,10 @@ namespace PL.Controllers
                     inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
 
                     inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
+                    
+                    
+
+
 
                     return View(inventario);
                 }
