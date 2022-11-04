@@ -29,12 +29,22 @@ namespace BL
 
                     collection[1] = new SqlParameter("@NIAF", SqlDbType.VarChar);
                     collection[1].Value = inventario.NIAF;
+                    if (inventario.NIAF == "" || inventario.NIAF == null || inventario.NIAF.Equals(" "))
+                    {
+                        collection[1].Value =inventario.NIAF = "N/A";
+
+                    }
 
                     collection[2] = new SqlParameter("@Responsable", SqlDbType.VarChar);
                     collection[2].Value = inventario.Responsable;
 
                     collection[3] = new SqlParameter("@Comentario", SqlDbType.VarChar);
                     collection[3].Value = inventario.Comentario;
+                    if (inventario.Comentario == "" || inventario.Comentario == null || inventario.Comentario.Equals(" "))
+                    {
+                        collection[3].Value = inventario.Comentario = "N/A";
+
+                    }
 
                     collection[4] = new SqlParameter("@IdTipoEquipo", SqlDbType.Int);
                     collection[4].Value = inventario.TipoEquipo.IdTipoEquipo;

@@ -28,6 +28,11 @@ namespace BL
 
                     collection[1] = new SqlParameter("@Justificacion", SqlDbType.VarChar);
                     collection[1].Value = entregaEquipo.Justificacion;
+                    if (entregaEquipo.Justificacion=="" || entregaEquipo.Justificacion==null || entregaEquipo.Justificacion.Equals(" "))
+                    {
+                        collection[1].Value = entregaEquipo.Justificacion = "N/A";
+
+                    }
 
                     collection[2] = new SqlParameter("@IdDireccionDestino", SqlDbType.Int);
                     collection[2].Value = entregaEquipo.direccionDestino.IdDireccionDestino;

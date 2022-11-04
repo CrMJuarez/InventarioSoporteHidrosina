@@ -35,9 +35,11 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Nombre, new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @placeholder="(No puede ir vacio)", autocomplete = "off", @onkeypress = "return SoloLetras(event,'lblErrorNombre')" })
+                            
                             @Html.ValidationMessageFor(model => model.Nombre)
                         </div>
+                        @Html.Label("", null, new {@id = "lblErrorNombre"})
                     </div>
 
                     <div class="form-group">
@@ -49,9 +51,10 @@
                         </div>
 
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @placeholder="(No puede ir vacio)", autocomplete = "off", @onkeypress = "return SoloLetras(event,'lblErrorApellidoPaterno')" })
                             @Html.ValidationMessageFor(model => model.ApellidoPaterno)
                         </div>
+                        @Html.Label("", null, new {@id = "lblErrorApellidoPaterno"})
                     </div>
 
                     <div class="form-group">
@@ -62,9 +65,10 @@
                             @Html.Label("Apellido Materno")
                         </div>
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @placeholder="(No puede ir vacio)", autocomplete = "off", @onkeypress = "return SoloLetras(event,'lblErrorApellidoMaterno')" })
                             @Html.ValidationMessageFor(model => model.ApellidoMaterno)
                         </div>
+                        @Html.Label("", null, new {@id = "lblErrorApellidoMaterno"})
                     </div>
 
                  
@@ -77,7 +81,7 @@
                             @Html.Label("Nombre Usuario")
                         </div>
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.NombreUsuario, new { @class = "form-control", @id = "txtNumeroEmpleado", @placeholder="Ejemp:User23", autocomplete = "off", @onkeypress = "return SoloLetras(event,'lblErrorUsuario')" })
+                            @Html.TextBoxFor(model => model.NombreUsuario, new { @class = "form-control", @id = "txtNombreUsuario", @placeholder="Ejemp:User23", autocomplete = "off" })
                             @Html.ValidationMessageFor(model => model.NombreUsuario, null, new { @class = "text-danger"})
                         </div>
                         @Html.Label("", null, new {@id = "lblErrorUsuario"})
@@ -91,7 +95,7 @@
                             @Html.Label("Contraseña")
                         </div>
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.Contrasenia, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.Contrasenia, new { @class = "form-control", @id = "txtContrasenia", @placeholder="Introduzca una contraseña", autocomplete = "off" })
                             @Html.ValidationMessageFor(model => model.Contrasenia)
                         </div>
                     </div>
@@ -160,7 +164,7 @@ function SoloLetras(e,controlId)
                       return true;
                   }
                   else{
-                      $('#' + controlId).text("Solo se aceptan letras y numeros sin caracteres especiales");
+                      $('#' + controlId).text("Solo se aceptan letras");
                       $('#' + controlId).css({ "color": "red" });
                       return false;
                   }

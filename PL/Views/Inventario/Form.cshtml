@@ -37,7 +37,7 @@
                             @Html.Label("Numero de serie")
                         </div>
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.NumeroSerie, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.NumeroSerie, new { @class = "form-control", @id = "txtNumeroSerie", @placeholder="Introduzca el numero de serie", autocomplete = "off" })
                             @Html.ValidationMessageFor(model => model.NumeroSerie)
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.NIAF, new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.NIAF, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.NIAF, new { @class = "form-control" , @id = "txtNIAF", @placeholder="(Opcional)", autocomplete = "off" })
                             @Html.ValidationMessageFor(model => model.NIAF)
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Responsable, new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.Responsable, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.Responsable, new { @class = "form-control", @id = "txtResponsable", @placeholder="Ingrese un responsable", autocomplete = "off"  })
                             @Html.ValidationMessageFor(model => model.Responsable)
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Comentario, new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.Comentario, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.Comentario, new { @class = "form-control", @id = "txtComentario", @placeholder="(Opcional)", autocomplete = "off"  })
                             @Html.ValidationMessageFor(model => model.Comentario)
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Modelo.Descripcion, new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.Modelo.Descripcion, new { @class = "form-control", @id = "txtDescripcion" })
+                            @Html.TextBoxFor(model => model.Modelo.Descripcion, new { @class = "form-control", @id = "txtDescripcion", @placeholder="(Opcional)", autocomplete = "off"  })
 
                         </div>
                     </div>
