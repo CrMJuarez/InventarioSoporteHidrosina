@@ -15,6 +15,7 @@ namespace ML
         [Required(ErrorMessage = "Debes insertar contraseña")]
         public string Contrasenia { get; set; }
         public bool Estatus { get; set; }
+        public string Email { get; set; } = null!;
         public ML.Rol Rol { get; set; }
         public List<object> Usuarios { get; set; }
     }
