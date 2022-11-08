@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IWebHostEnvironment;
+
+
 namespace PL.Controllers
 {
     public class InventarioController : Controller
@@ -15,18 +17,22 @@ namespace PL.Controllers
         private readonly IHostingEnvironment _hostingEnvironment;
         public InventarioController(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
+
             _configuration = configuration;
             _hostingEnvironment = hostingEnvironment;
+
         }
         [HttpGet]
         public ActionResult GetAll()
         {
+
             ML.Inventario inventario = new ML.Inventario();
 
             ML.Result resultInventario = new ML.Result();
             resultInventario.Objects = new List<Object>();
             using (var client = new HttpClient())
             {
+
                 client.BaseAddress = new Uri(_configuration["WebAPI"]);
 
                 var responseTask = client.GetAsync("api/inventario/GetAll");
@@ -42,15 +48,17 @@ namespace PL.Controllers
 
                     foreach (var resultItem in readTask.Result.Objects)
                     {
+
                         ML.Inventario resultItemList = Newtonsoft.Json.JsonConvert.DeserializeObject<ML.Inventario>(resultItem.ToString());
                         resultInventario.Objects.Add(resultItemList);
+
                     }
                 }
 
                 inventario.Inventarios = resultInventario.Objects;
 
-
                 return View(inventario);
+
             }
             
         }
@@ -61,10 +69,12 @@ namespace PL.Controllers
             ML.Result result = BL.Inventario.GetAll(inventario);
             inventario.Inventarios = result.Objects;
             return View(inventario);
+
         }
         [HttpGet]
         public ActionResult Form(int? IdInventario)
         {
+
             ML.Inventario inventario = new ML.Inventario();
             ML.Result resultTipoEquipo = BL.TipoEquipo.GetAll();
             ML.Result resultDireccionEntrada = BL.DireccionEntrada.GetAll();
@@ -75,25 +85,16 @@ namespace PL.Controllers
             
             inventario.Modelo = new ML.Modelo();
             inventario.Modelo.Marca = new ML.Marca();
-            //descomentar en caso de error
-           // inventario.Modelo.Marca.Marcas = resultMarca.Objects;
+          
 
             if (IdInventario != null)
             {
+
                 ML.Result result = new ML.Result();
-
-
-
-
-                //inventario.TipoEquipo = new ML.TipoEquipo();
-                //inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
-                //inventario.DireccionEntrada = new ML.DireccionEntrada();
-                //inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
-
-
 
                 using (var client = new HttpClient())
                 {
+
                     client.BaseAddress = new Uri(_configuration["WebAPI"]);
 
                     var responseTask = client.GetAsync("api/inventario/GetById/" + IdInventario);
@@ -110,8 +111,8 @@ namespace PL.Controllers
                         resultItemList = Newtonsoft.Json.JsonConvert.DeserializeObject<ML.Inventario>(readTask.Result.Object.ToString());
 
                         result.Object = resultItemList;
-
                         result.Correct = true;
+
                     }
 
                     if (result.Correct)
@@ -119,35 +120,29 @@ namespace PL.Controllers
                     { 
 
                         inventario= (ML.Inventario)result.Object;
-
-
-
                         inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
                         inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
-
-
                         ML.Result resultModelo = BL.Marca.MarcaGetByIdModelo(inventario.Marca.IdMarca.Value);
-                        //inventario.Modelo = new ML.Modelo();
+                    
                         inventario.Modelo.Marca = new ML.Marca();
                         inventario.Modelo.Marca.Marcas = resultMarca.Objects.ToList();
-
                         inventario.Modelo.Modelos = resultModelo.Objects.ToList();
 
                         return View(inventario);
-
                     }
 
                     else
                     {
+
                         ViewBag.Message = "error al traer al inventario"+result.ErrorMessage;
                         return View("Modal");
+
                     }
 
                 }
             }
             else
             {
-
 
                 inventario.TipoEquipo = new ML.TipoEquipo();
                 inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
@@ -190,7 +185,7 @@ namespace PL.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = "No se pudo actualizar el equipo a inventario";
+                    ViewBag.Message = "No se pudo actualizar el equipo a inventario" + result.ErrorMessage;
                     return PartialView("Modal");
 
                 }
