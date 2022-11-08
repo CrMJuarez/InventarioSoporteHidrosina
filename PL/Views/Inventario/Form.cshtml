@@ -89,7 +89,7 @@
                             @Html.Label("Marcas")
                         </div>
                         <div class="col-md-3">
-                            @Html.DropDownListFor(model => model.Modelo.Marca.IdMarca, new SelectList(Model.Modelo.Marca.Marcas, "IdMarca", "Nombre"), "Selecciona una opcion", new { @class = "form-control", @id = "ddlMarca" })
+                            @Html.DropDownListFor(model => model.Marca.IdMarca, new SelectList(Model.Modelo.Marca.Marcas, "IdMarca", "Nombre"), "Selecciona una opcion", new { @class = "form-control", @id = "ddlMarca" })
                         </div>
 
                     </div>
@@ -122,7 +122,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Modelo.Descripcion, new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
-                            @Html.TextBoxFor(model => model.Modelo.Descripcion, new { @class = "form-control", @id = "txtDescripcion", @placeholder="(Opcional)", autocomplete = "off"  })
+                            @Html.TextBoxFor(model => model.Modelo.Descripcion, new { @class = "form-control", @readonly = "readonly",@id = "txtDescripcion"  })
 
                         </div>
                     </div>
@@ -192,6 +192,31 @@
             });
         });
 
+
+
+
+        $(document).ready(function () {
+            $("#ddlModelo").change(function () {
+                $("#txtDescripcion").empty();
+                //$("#txtDescripcion").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("DescripcionGetByIdModelo")',
+                    dataType: 'json',
+                    data: { idModelo: $("#ddlModelo").val() },
+                    success: function (modelos) {
+                        //$("#txtDescripcion").append('<option value="0">' + 'Seleccione una opción' + '</option>');
+                        $.each(modelos, function (i, modelos) {
+                            $("#txtDescripcion").val(modelos.descripcion
+                                );
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed.' + ex);
+                    }
+                });
+            });
+        });
 
                 //function LlenarDescripcion() {
                 //    if ($("#ddlModelo option:selected").val() != "0") {

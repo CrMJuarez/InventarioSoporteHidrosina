@@ -27,14 +27,14 @@ namespace PL.Controllers
         [HttpGet]
         public ActionResult Form()
         {
-
+            ML.Inventario inventario = new ML.Inventario();
             ML.Result result = BL.EntregaEquipo.GetAll();
             ML.EntregaEquipo entregaEquipo = new ML.EntregaEquipo();
             ML.Result resultDestino = BL.DireccionDestino.GetAll();
             ML.Result resultPersonalEntrega = BL.PersonalEntrega.GetAll();
             ML.Result resultPersonalAutorizacion = BL.PersonalAutorizacion.GetAll();
             ML.Result resultOperadora = BL.Operadora.GetAll();
-            ML.Result resultInventario = BL.Inventario.GetAll();
+            ML.Result resultInventario = BL.Inventario.GetAll(inventario);
 
             if (resultDestino.Correct)
             {

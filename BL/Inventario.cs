@@ -50,7 +50,7 @@ namespace BL
                     collection[4].Value = inventario.TipoEquipo.IdTipoEquipo;
 
                     collection[5] = new SqlParameter("@IdMarca", SqlDbType.Int);
-                    collection[5].Value = inventario.Modelo.Marca.IdMarca;
+                    collection[5].Value = inventario.Marca.IdMarca;
 
                     collection[6] = new SqlParameter("@IdModelo", SqlDbType.Int);
                     collection[6].Value = inventario.Modelo.IdModelo;
@@ -115,7 +115,7 @@ namespace BL
                     collection[5].Value = inventario.TipoEquipo.IdTipoEquipo;
 
                     collection[6] = new SqlParameter("@IdMarca", SqlDbType.Int);
-                    collection[6].Value = inventario.Modelo.Marca.IdMarca;
+                    collection[6].Value = inventario.Marca.IdMarca;
 
                     collection[7] = new SqlParameter("@IdModelo", SqlDbType.Int);
                     collection[7].Value = inventario.Modelo.IdModelo;
@@ -225,7 +225,7 @@ namespace BL
 
         }
 
-        public static ML.Result GetAll()
+        public static ML.Result GetAll(ML.Inventario inventario)
         {
             ML.Result result = new ML.Result();
 
@@ -250,7 +250,8 @@ namespace BL
 
                         foreach (DataRow row1 in inventarioTable.Rows)
                         {
-                            ML.Inventario inventario = new ML.Inventario();
+                            //ML.Inventario inventario = new ML.Inventario();
+                            inventario = new ML.Inventario();
                             inventario.IdInventario = int.Parse(row1[0].ToString());
                             inventario.NumeroSerie = row1[1].ToString();
                             inventario.NIAF = row1[2].ToString();
