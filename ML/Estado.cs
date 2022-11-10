@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ML
+{
+    public class Estado
+    {
+        public int IdEstado { get; set; }
+        public string Nombre { get; set; }
+        public ML.Pais? Pais { get; set; }
+        public List<object> Estados { get; set; }
+        public ML.Usuario Usuario { get; set; }
+    }
+}

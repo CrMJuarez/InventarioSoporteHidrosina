@@ -140,6 +140,12 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="col-md-3">
+                            <div id="qrcode" style="width:100px; height:100px;background-color:#DFF0D8;"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-2">
                             <div class="btn-group d-flex w-100" role="group">
                                 <input type="submit" value="@ViewBag.Accion Guardar" class="btn btn-success" />
@@ -164,13 +170,13 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <script src="qrcode.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
             $("#ddlMarca").change(function () {
                 $("#ddlModelo").empty();
-                //$("#txtDescripcion").empty();
+
                 $.ajax({
                     type: 'GET',
                     url: '@Url.Action("MarcaGetByIdModelo")',
@@ -198,17 +204,17 @@
         $(document).ready(function () {
             $("#ddlModelo").change(function () {
                 $("#txtDescripcion").empty();
-                //$("#txtDescripcion").empty();
+
                 $.ajax({
                     type: 'GET',
                     url: '@Url.Action("DescripcionGetByIdModelo")',
                     dataType: 'json',
                     data: { idModelo: $("#ddlModelo").val() },
                     success: function (modelos) {
-                        //$("#txtDescripcion").append('<option value="0">' + 'Seleccione una opción' + '</option>');
+
                         $.each(modelos, function (i, modelos) {
                             $("#txtDescripcion").val(modelos.descripcion
-                                );
+                            );
                         });
                     },
                     error: function (ex) {
@@ -218,25 +224,18 @@
             });
         });
 
-                //function LlenarDescripcion() {
-                //    if ($("#ddlModelo option:selected").val() != "0") {
-                //        var pmtPeticion = new Object();
-                //        pmtPeticion.Id = $("#ddlModelo option:selected").val();
-                //        $.ajax
-                //            ({
-                //                type: 'POST',
-                //                data: pmtPeticion,
-                //                url: urlMostrarCModelo,
-                //                success: function (data) {
-                //                    $('#txtDescripcion').val(data.LsCuerpo[0].Descripcion);
-                //                }
-                //            });
-                //    }
-                //}
 
 
 
-
+        ////        function GenerarQR(val) {
+        ////    $("#qrcode").html("");
+        ////    qrcode = new QRCode(document.getElementById("qrcode"), {
+        ////        text: '' + val,
+        ////        width: 100,
+        ////        height: 100
+        ////    });
+        ////    qrcode.makeCode();
+        ////}
 
 
     </script>

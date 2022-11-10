@@ -23,7 +23,7 @@ namespace BL
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[7];
+                    SqlParameter[] collection = new SqlParameter[8];
 
                     collection[0] = new SqlParameter("@Nombre", SqlDbType.VarChar);
                     collection[0].Value = usuario.Nombre;
@@ -45,6 +45,9 @@ namespace BL
 
                     collection[6] = new SqlParameter("@IdRol", SqlDbType.Int);  
                     collection[6].Value = usuario.Rol.IdRol;
+
+                    collection[7] = new SqlParameter("@Email", SqlDbType.VarChar);
+                    collection[7].Value = usuario.Email;
 
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
@@ -82,7 +85,7 @@ namespace BL
                     cmd.CommandText = query;
                     cmd.Connection = context;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter[] collection = new SqlParameter[8];
+                    SqlParameter[] collection = new SqlParameter[9];
 
                     collection[0] = new SqlParameter("@IdUsuario", SqlDbType.Int);
                     collection[0].Value = usuario.IdUsuario;
@@ -108,6 +111,9 @@ namespace BL
                     //usuario.Rol = new ML.Rol();
                     collection[7] = new SqlParameter("@IdRol", SqlDbType.Int);
                     collection[7].Value = usuario.Rol.IdRol;
+
+                    collection[8] = new SqlParameter("@Email", SqlDbType.VarChar);
+                    collection[8].Value = usuario.Email;
 
                     cmd.Parameters.AddRange(collection);
                     cmd.Connection.Open();
@@ -175,9 +181,10 @@ namespace BL
                                 usuario.NombreUsuario = row1[4].ToString();
                                 usuario.Contrasenia = row1[5].ToString();
                                 usuario.Estatus = bool.Parse(row1[6].ToString());
+                                usuario.Email = row1[7].ToString();
                                 usuario.Rol = new ML.Rol();
-                                usuario.Rol.IdRol = int.Parse(row1[7].ToString());
-                                usuario.Rol.Nombre = row1[8].ToString();
+                                usuario.Rol.IdRol = int.Parse(row1[8].ToString());
+                                usuario.Rol.Nombre = row1[9].ToString();
                                 result.Object = usuario;
                                 result.Correct = true;
                             }
@@ -235,9 +242,10 @@ namespace BL
                             usuario.NombreUsuario = row[4].ToString();
                             usuario.Contrasenia = row[5].ToString();
                             usuario.Estatus = bool.Parse(row[6].ToString());
+                            usuario.Email = row[7].ToString();
                             usuario.Rol = new ML.Rol();
-                            usuario.Rol.IdRol = int.Parse(row[7].ToString());
-                            usuario.Rol.Nombre = row[8].ToString();
+                            usuario.Rol.IdRol = int.Parse(row[8].ToString());
+                            usuario.Rol.Nombre = row[9].ToString();
                             result.Objects.Add(usuario);
                         }
                         result.Correct = true;

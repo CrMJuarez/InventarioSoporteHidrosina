@@ -14,18 +14,24 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/Estilosbs.css" />
+   @* <link rel="stylesheet" href="~/css/Gota.css">*@
 </head>
 <body>
-    <header>
+    <header class="shadow-lg">
+      
         <nav class="navbar navbar-expand-lg navbar-dark .bg-white">
             <div class="container-fluid">
                 <div class="col-md-2 col-sm-6 col-xs-8 branding">
-                <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                   
                     <img class="logo horizontal-logo" src="~/Imagenes/logo.png" alt="Hidrosina">
+                       
                 </a>
+                   
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
+
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
@@ -91,8 +97,9 @@
         </main>
     </div>
     <footer class="border-top footer text-muted">
-        <label style="margin-top:2%;margin-left:35%;font-size:x-small;color:#C3C3C3">Hidrosina © 2022 Todos los derechos Reservados</label>
+        <label style="margin-top:2%;margin-left:35%;font-size:x-small;color:black">Hidrosina © @DateTime.Now.Year Todos los derechos Reservados</label>
     </footer>
+   
     <script type="text/javascript" src="~/Scripts/PersonalAutorizacion/PersonalJS.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

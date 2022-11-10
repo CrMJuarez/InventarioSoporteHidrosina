@@ -60,7 +60,7 @@ namespace PL.Controllers
                 return View(inventario);
 
             }
-            
+
         }
         [HttpPost]
         public ActionResult GetAll(ML.Inventario inventario)
@@ -81,11 +81,11 @@ namespace PL.Controllers
             ML.Result resultMarca = BL.Marca.GetAll();
 
             inventario.TipoEquipo = new ML.TipoEquipo();
-            inventario.DireccionEntrada = new ML.DireccionEntrada();   
-            
+            inventario.DireccionEntrada = new ML.DireccionEntrada();
+
             inventario.Modelo = new ML.Modelo();
             inventario.Modelo.Marca = new ML.Marca();
-          
+
 
             if (IdInventario != null)
             {
@@ -117,13 +117,13 @@ namespace PL.Controllers
 
                     if (result.Correct)
 
-                    { 
+                    {
 
-                        inventario= (ML.Inventario)result.Object;
+                        inventario = (ML.Inventario)result.Object;
                         inventario.TipoEquipo.Equipos = resultTipoEquipo.Objects.ToList();
                         inventario.DireccionEntrada.Direcciones = resultDireccionEntrada.Objects.ToList();
                         ML.Result resultModelo = BL.Marca.MarcaGetByIdModelo(inventario.Marca.IdMarca.Value);
-                    
+
                         inventario.Modelo.Marca = new ML.Marca();
                         inventario.Modelo.Marca.Marcas = resultMarca.Objects.ToList();
                         inventario.Modelo.Modelos = resultModelo.Objects.ToList();
@@ -134,7 +134,7 @@ namespace PL.Controllers
                     else
                     {
 
-                        ViewBag.Message = "error al traer al inventario"+result.ErrorMessage;
+                        ViewBag.Message = "error al traer al inventario" + result.ErrorMessage;
                         return View("Modal");
 
                     }
@@ -153,8 +153,8 @@ namespace PL.Controllers
 
             }
         }
-    
-        
+
+
 
         [HttpPost]
 

@@ -32,7 +32,7 @@ namespace PL.Controllers
                     {
                         if (usuario.Rol.IdRol == 1)
                         {
-                            return RedirectToAction("GetAll", "Usuario");
+                            return RedirectToAction("Index", "Home");
                         }
                         else
                         {

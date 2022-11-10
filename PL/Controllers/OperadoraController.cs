@@ -52,8 +52,11 @@ namespace PL.Controllers
 
         [HttpPost]
 
-        public ActionResult Form(ML.Operadora operadora)
+        public ActionResult Form()
         {
+            ML.Operadora operadora = new ML.Operadora();
+
+
             if (operadora.IdOperadora == null)
             {
 
@@ -62,6 +65,7 @@ namespace PL.Controllers
                 {
                     ViewBag.Message = "Se agrego correctamente la operadora";
                     return PartialView("Modal");
+
                 }
                 else
                 {

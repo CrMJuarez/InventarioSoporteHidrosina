@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SL_WEBAPI.Controllers
 {
-  
+
     public class InventarioController : ControllerBase
     {
         [HttpGet]
@@ -11,7 +11,6 @@ namespace SL_WEBAPI.Controllers
         public IActionResult GetAll()
         {
             ML.Inventario inventario = new ML.Inventario();
-
 
             ML.Result result = BL.Inventario.GetAll(inventario);
 
