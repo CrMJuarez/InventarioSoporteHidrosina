@@ -29,45 +29,43 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Nombre, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Nombre, new { @class = "form-control" })
+
                             @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @placeholder="(No puede ir vacio)", autocomplete = "off" })
-                            @Html.ValidationMessageFor(model => model.Nombre)
                         </div>
+                        @Html.ValidationMessageFor(model => model.Nombre)
+
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Descripcion, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                        @Html.LabelFor(model => model.Descripcion, new { @class = "form-control" })
+                     
                             @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control", @id = "txtDescripcion", @placeholder="(No puede ir vacio)", autocomplete = "off" })
+                          </div>  
                             @Html.ValidationMessageFor(model => model.Descripcion)
-                        </div>
+                        
                     </div>
-                   
-                    <div class="form-group">
-                        <div class="col-md-3" style="display: none;">
-                            @Html.LabelFor(model => model.Marca.IdMarca, new { @class = "control-label col-md-2" })
-                            @Html.LabelFor(model => model.Marca.Nombre, new { @class = "control-label col-md-2" })
-                        </div>
-                       
-                        <div class="control-label col-md-2">
-                        @Html.Label("Marcas")
-                        </div>
-                        <div class="col-md-3">
-                            @*@Html.TextBoxFor(model => model.Rol.IdRol, new { @class = "form-control" })*@
-                            @*@Html.ValidationMessageFor(model => model.Rol.IdRol)*@
-                            @* aqui va el Drop Down List *@
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Marca.Nombre,"Marcas", new { @class = "form-control" })
                             @Html.DropDownListFor(model => model.Marca.IdMarca, new SelectList(Model.Marca.Marcas, "IdMarca", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
 
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="col-lg-4 pt-5">
                         <div class="col-md-offset-2 col-md-2">
                             <div class="btn-group d-flex w-100" role="group">
                                 <input type="submit" value="@ViewBag.Accion Guardar" class="btn btn-success" />
-                            @Html.ActionLink("Regresar", "GetAll", "Modelo", htmlAttributes: new { @class = "btn btn-danger" })
-                        </div>
+                                @Html.ActionLink("Regresar", "GetAll", "Modelo", htmlAttributes: new { @class = "btn btn-danger" })
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,5 +73,5 @@
             }
         </div>
     </div>
-    
+
 </div>

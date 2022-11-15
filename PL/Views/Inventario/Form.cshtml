@@ -19,7 +19,7 @@
         <div class="col-md-12">
             @using (Html.BeginForm("Form", "Inventario", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                <div class="form-horizontal">
+                <div class="row">
 
                     <div class="form-group" style="display: none;">
                         @Html.LabelFor(model => model.IdInventario, new { @class = "control-label col-md-2 hidden" })
@@ -29,74 +29,80 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="form-group" style="display: none;">
-                            @Html.LabelFor(model => model.NumeroSerie, new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="control-label col-md-2">
-                            @Html.Label("Numero de serie")
-                        </div>
-                        <div class="col-md-3">
+                     <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.NumeroSerie,"Numero serie", new { @class = "form-control" })
+                       
                             @Html.TextBoxFor(model => model.NumeroSerie, new { @class = "form-control", @id = "txtNumeroSerie", @placeholder="Introduzca el numero de serie", autocomplete = "off" })
+                           </div>
                             @Html.ValidationMessageFor(model => model.NumeroSerie)
-                        </div>
+                        
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.NIAF, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+                     <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.NIAF, new { @class = "form-control" })
+                        
                             @Html.TextBoxFor(model => model.NIAF, new { @class = "form-control" , @id = "txtNIAF", @placeholder="(Opcional)", autocomplete = "off" })
-                            @Html.ValidationMessageFor(model => model.NIAF)
+                           
                         </div>
+                    @Html.ValidationMessageFor(model => model.NIAF)
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Responsable, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                        @Html.LabelFor(model => model.Responsable, new { @class = "form-control" })
+                        
                             @Html.TextBoxFor(model => model.Responsable, new { @class = "form-control", @id = "txtResponsable", @placeholder="Ingrese un responsable", autocomplete = "off"  })
-                            @Html.ValidationMessageFor(model => model.Responsable)
+                           
                         </div>
+                        @Html.ValidationMessageFor(model => model.Responsable)
                     </div>
 
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Comentario, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Comentario, new { @class = "form-control" })
+                        
                             @Html.TextBoxFor(model => model.Comentario, new { @class = "form-control", @id = "txtComentario", @placeholder="(Opcional)", autocomplete = "off"  })
-                            @Html.ValidationMessageFor(model => model.Comentario)
+                            
                         </div>
+                        @Html.ValidationMessageFor(model => model.Comentario)
                     </div>
 
 
-                    <div class="form-group">
-                        <div class="col-md-3" style="display: none;">
-                            @Html.LabelFor(model => model.TipoEquipo.IdTipoEquipo, new { @class = "control-label col-md-2" })
-                            @Html.LabelFor(model => model.TipoEquipo.Nombre, new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="control-label col-md-2">
-                            @Html.Label("Equipos")
-                        </div>
-                        <div class="col-md-3">
 
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.TipoEquipo.Nombre,"Equipos", new { @class = "form-control" })
                             @Html.DropDownListFor(model => model.TipoEquipo.IdTipoEquipo, new SelectList(Model.TipoEquipo.Equipos, "IdTipoEquipo", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
                         </div>
                     </div>
 
 
-                    <div class="form-group">
-                        <div class="control-label col-md-2">
-                            @Html.Label("Marcas")
-                        </div>
-                        <div class="col-md-3">
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Marca.Marcas,new { @class = "form-control" }))
+                     
                             @Html.DropDownListFor(model => model.Marca.IdMarca, new SelectList(Model.Modelo.Marca.Marcas, "IdMarca", "Nombre"), "Selecciona una opcion", new { @class = "form-control", @id = "ddlMarca" })
                         </div>
 
                     </div>
-                    <div class="form-group">
 
-                        @Html.LabelFor(model => model.Modelo.Modelos, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+
+                        @Html.LabelFor(model => model.Modelo.Modelos, new { @class = "form-control" })
+                     
                             @if (Model.Modelo.Modelos == null)
                             {
 
@@ -119,22 +125,23 @@
                     </div>
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Modelo.Descripcion, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+
+                            @Html.LabelFor(model => model.Modelo.Descripcion, new { @class = "form-control" })
+                      
                             @Html.TextBoxFor(model => model.Modelo.Descripcion, new { @class = "form-control", @readonly = "readonly",@id = "txtDescripcion"  })
 
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-md-3" style="display: none;">
-                            @Html.LabelFor(model => model.DireccionEntrada.IdDireccionEntrada, new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="control-label col-md-2">
-                            @Html.Label("Direccion de almacenaje")
-                        </div>
-                        <div class="col-md-3">
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+
+                            @Html.LabelFor(model => model.DireccionEntrada.IdDireccionEntrada,"Direccion Almacen", new { @class = "form-control" })
                             @Html.DropDownListFor(model => model.DireccionEntrada.IdDireccionEntrada, new SelectList(Model.DireccionEntrada.Direcciones, "IdDireccionEntrada", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
                         </div>
                     </div>
@@ -145,7 +152,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="col-lg-4 pt-5">
                         <div class="col-md-offset-2 col-md-2">
                             <div class="btn-group d-flex w-100" role="group">
                                 <input type="submit" value="@ViewBag.Accion Guardar" class="btn btn-success" />

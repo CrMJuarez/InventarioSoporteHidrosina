@@ -20,7 +20,7 @@
             @using (Html.BeginForm("Form", "TipoEquipo", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
 
-                <div class="form-horizontal">
+                <div class="row">
 
                     <div class="form-group" style="display: none;">
                         @Html.LabelFor(model => model.IdTipoEquipo, new { @class = "control-label col-md-2 hidden" })
@@ -30,15 +30,19 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Nombre, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Nombre, new { @class = "form-control" })
+                       
                             @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @placeholder="(No puede ir vacio)", autocomplete = "off" })
-                            @Html.ValidationMessageFor(model => model.Nombre)
                         </div>
+                            @Html.ValidationMessageFor(model => model.Nombre)
+                       
                     </div>
 
-                    <div class="form-group">
+                    <div class="col-lg-4 pt-5">
                         <div class="col-md-offset-2 col-md-2">
                             <div class="btn-group d-flex w-100" role="group">
                                 <input type="submit" value="@ViewBag.Accion Guardar" class="btn btn-success" />

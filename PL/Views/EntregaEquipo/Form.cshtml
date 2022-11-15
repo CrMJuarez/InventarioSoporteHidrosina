@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-   
+
     <div class="row">
         <div class="col-md-12">
             @using (Html.BeginForm("Form", "EntregaEquipo", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -28,14 +28,12 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.direccionDestino.IdDireccionDestino, new { @class = "control-label col-md-2 hidden" })
-                        <div class="control-label col-md-2">
-                            @Html.Label("Destino")
-                        </div>
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.direccionDestino.IdDireccionDestino,"Destino", new { @class = "form-control" })
 
-                        <div class="col-md-3">
-                           
+
                             @Html.DropDownListFor(model => model.direccionDestino.IdDireccionDestino, new SelectList(Model.direccionDestino.Direcciones, "IdDireccionDestino", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
 
 
@@ -44,29 +42,21 @@
 
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.personalEntrega.IdPersonalEntrega, new { @class = "control-label col-md-2 hidden" })
-                        <div class="control-label col-md-2">
-                            @Html.Label("Personal que entrega")
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.personalEntrega.IdPersonalEntrega,"Personal entrega", new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.personalEntrega.IdPersonalEntrega, new SelectList(Model.personalEntrega.Personales, "IdPersonalEntrega", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
                         </div>
-
-                        <div class="col-md-3">
-
-                            @Html.DropDownListFor(model => model.personalEntrega.IdPersonalEntrega, new SelectList(Model.personalEntrega.Personales, "IdPersonalEntrega", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
-
-
-                        </div>
-
-
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.personalAutorizacion.IdPersonalAutorizacion, new { @class = "control-label col-md-2 hidden" })
-                        <div class="control-label col-md-2">
-                            @Html.Label("Personal que autoriza")
-                        </div>
 
-                        <div class="col-md-3">
+
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.personalAutorizacion.IdPersonalAutorizacion,"Autorización", new { @class = "form-control" })
 
                             @Html.DropDownListFor(model => model.personalAutorizacion.IdPersonalAutorizacion, new SelectList(Model.personalAutorizacion.Personales, "IdPersonalAutorizacion", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
 
@@ -76,13 +66,11 @@
 
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.operadora.IdOperadora, new { @class = "control-label col-md-2 hidden" })
-                        <div class="control-label col-md-2">
-                            @Html.Label("Operadora")
-                        </div>
-
-                        <div class="col-md-3">
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.operadora.IdOperadora,"Operadora", new { @class = "form-control" })
+                      
 
                             @Html.DropDownListFor(model => model.operadora.IdOperadora, new SelectList(Model.operadora.Operadoras, "IdOperadora", "NombreCorto"), "Selecciona una opcion", new { @class = "form-control" })
 
@@ -92,13 +80,11 @@
 
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.inventario.IdInventario, new { @class = "control-label col-md-2 hidden" })
-                        <div class="control-label col-md-2">
-                            @Html.Label("Equipo a entregar")
-                        </div>
-
-                        <div class="col-md-3">
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.inventario.IdInventario,"Equipo entrega", new { @class = "form-control" })
+                        
 
                             @Html.DropDownListFor(model => model.inventario.NumeroSerie, new SelectList(Model.inventario.Inventarios, "NumeroSerie", "NumeroSerie"), "Selecciona una opcion", new { @class = "form-control" })
 
@@ -107,32 +93,29 @@
                     </div>
 
 
-
-
-
-
-
-
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Recibe, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Recibe, new { @class = "form-control" })
+                        
                             @Html.TextBoxFor(model => model.Recibe, new { @class = "form-control", @id = "txtRecibe", @placeholder="¿Quien recibe?", autocomplete = "off" })
-                            @Html.ValidationMessageFor(model => model.Recibe)
+                            
                         </div>
+                        @Html.ValidationMessageFor(model => model.Recibe)
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Justificacion, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Justificacion, new { @class = "form-control" })
+                        
                             @Html.TextBoxFor(model => model.Justificacion, new { @class = "form-control", @id = "txtJustificacion", @placeholder="(Opcional)", autocomplete = "off" })
                             @Html.ValidationMessageFor(model => model.Justificacion)
                         </div>
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="col-lg-4 pt-5">
                         <div class="col-md-offset-2 col-md-2">
                             <div class="btn-group d-flex w-100" role="group">
                                 <input type="submit" value="@ViewBag.Accion Entregar" class="btn btn-success" />
