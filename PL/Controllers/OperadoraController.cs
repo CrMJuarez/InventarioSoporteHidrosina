@@ -23,7 +23,7 @@ namespace PL.Controllers
         public ActionResult GetAll()
         {
             ML.Operadora operadora = new ML.Operadora();
-           
+
 
             ML.Result resultOperadora = new ML.Result();
             resultOperadora.Objects = new List<Object>();
@@ -103,7 +103,7 @@ namespace PL.Controllers
                     if (result.Correct)
                     {
                         operadora = (ML.Operadora)result.Object;
-                       
+
 
                         ML.Result resultEstados = BL.Estado.GetByIdPais(operadora.Direccion.Colonia.Municipio.Estado.Pais.IdPais);
                         ML.Result resultMunicipios = BL.Municipio.GetByIdEstado(operadora.Direccion.Colonia.Municipio.Estado.IdEstado);
@@ -126,7 +126,7 @@ namespace PL.Controllers
             }
             else
             {
-                
+
                 operadora.Direccion.Colonia.Municipio.Estado.Pais.Paises = resultPaises.Objects.ToList();
                 return View(operadora);
             }
@@ -142,7 +142,7 @@ namespace PL.Controllers
 
         public ActionResult Form(ML.Operadora operadora)
         {
-       
+
             if (operadora.IdOperadora == null)
             {
 
