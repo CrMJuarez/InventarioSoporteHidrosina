@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BL;
+using Microsoft.AspNetCore.Mvc;
+using ML;
 using System.Linq;
 
 namespace PL.Controllers
@@ -25,7 +27,8 @@ namespace PL.Controllers
         public ActionResult Form(int? IdDireccionDestino)
         {
             ML.DireccionDestino direccionDestino = new ML.DireccionDestino();
-            ML.Result resultOperadora = BL.Operadora.GetAll();
+            ML.Operadora operadora = new ML.Operadora();
+            ML.Result resultOperadora = BL.Operadora.GetAll(operadora);
             direccionDestino.Operadora = new ML.Operadora();
 
             if (IdDireccionDestino == null)

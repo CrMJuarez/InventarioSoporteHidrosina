@@ -11,6 +11,7 @@ namespace ML
         public string RazonSocial { get; set; }
         public string Domicilio { get; set; }
         public string RFC { get; set; }
+        public ML.Direccion? Direccion { get; set; }
         public List<object> Operadoras { get; set; }
     }
 }

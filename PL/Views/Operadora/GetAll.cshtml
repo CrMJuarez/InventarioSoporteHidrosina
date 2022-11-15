@@ -54,7 +54,8 @@
 
                         <td class="text-center">@operadora.NombreCorto</td>
                         <td class="text-center">@operadora.RazonSocial</td>
-                        <td class="text-center">@operadora.Domicilio</td>
+                        <td>@(operadora.Direccion.Calle + " " + "Num. int:" + operadora.Direccion.NumeroInterior + " " + "Num. ext:" + operadora.Direccion.NumeroExterior + " " + operadora.Direccion.Colonia.Nombre + "," + " " + operadora.Direccion.Colonia.CodigoPostal + "," + " " + operadora.Direccion.Colonia.Municipio.Nombre + "," + " " + operadora.Direccion.Colonia.Municipio.Estado.Nombre + "," + " " + operadora.Direccion.Colonia.Municipio.Estado.Pais.Nombre + ".")</td>
+                       @* <td class="text-center">@operadora.Domicilio</td>*@
                         <td class="text-center">@operadora.RFC</td>
                         <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Operadora", new { IdOperadora = operadora.IdOperadora})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
                     </tr>

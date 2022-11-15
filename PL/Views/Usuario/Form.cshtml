@@ -13,143 +13,129 @@
             </div>
         </div>
     </div>
-   @* <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="~/Scripts/Usuario/UsuarioJS.js"></script>*@
+    @* <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Usuario/UsuarioJS.js"></script>*@
     <div class="row">
         <div class="col-md-12">
             @using (Html.BeginForm("Form", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                <div class="form-horizontal">
+                <div class="row">
 
                     <div class="form-group" style="display: none;">
                         @Html.LabelFor(model => model.IdUsuario, new { @class = "control-label col-md-2 hidden" })
                         <div class="col-md-3">
                             @Html.TextBoxFor(model => model.IdUsuario, new { @class = "form-control hidden"})
                             @Html.ValidationMessageFor(model => model.IdUsuario)
-                          @*  @id = "txtNumeroEmpleado", @placeholder="Ejemp:0123", autocomplete = "off", @onkeypress = "return SoloNumeros(event,'lblErrorNumeroEmpleado')"})*@
-                      
-                  </div>
-                       
+                            @*  @id = "txtNumeroEmpleado", @placeholder="Ejemp:0123", autocomplete = "off", @onkeypress = "return SoloNumeros(event,'lblErrorNumeroEmpleado')"})*@
+
+                        </div>
+
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Nombre, new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Nombre, new { @class = "form-control" })
                             @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @placeholder="(No puede ir vacio)", autocomplete = "off", @onkeypress = "return SoloLetras(event,'lblErrorNombre')" })
-                            
-                            @Html.ValidationMessageFor(model => model.Nombre)
+
                         </div>
+                        @Html.ValidationMessageFor(model => model.Nombre)
                         @Html.Label("", null, new {@id = "lblErrorNombre"})
                     </div>
 
-                    <div class="form-group">
-                        <div class="form-group" style="display: none;">
-                        @Html.LabelFor(model => model.ApellidoPaterno, new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="control-label col-md-2">
-                            @Html.Label("Apellido Paterno")
-                        </div>
 
-                        <div class="col-md-3">
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.ApellidoPaterno,"Apellido Paterno", new { @class = "form-control" })
                             @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @placeholder="(No puede ir vacio)", autocomplete = "off", @onkeypress = "return SoloLetras(event,'lblErrorApellidoPaterno')" })
-                            @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+
+
                         </div>
                         @Html.Label("", null, new {@id = "lblErrorApellidoPaterno"})
+                        @Html.ValidationMessageFor(model => model.ApellidoPaterno)
                     </div>
 
-                    <div class="form-group">
-                        <div class="form-group" style="display: none;">
-                        @Html.LabelFor(model => model.ApellidoMaterno, new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="control-label col-md-2">
-                            @Html.Label("Apellido Materno")
-                        </div>
-                        <div class="col-md-3">
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.ApellidoMaterno,"Apellido Materno", new { @class = "form-control"})
                             @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @placeholder="(No puede ir vacio)", autocomplete = "off", @onkeypress = "return SoloLetras(event,'lblErrorApellidoMaterno')" })
-                            @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+
                         </div>
                         @Html.Label("", null, new {@id = "lblErrorApellidoMaterno"})
+                        @Html.ValidationMessageFor(model => model.ApellidoMaterno)
                     </div>
 
-                 
 
-                    <div class="form-group">
-                        <div class="form-group" style="display: none;">
-                        @Html.LabelFor(model => model.NombreUsuario, new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="control-label col-md-2">
-                            @Html.Label("Nombre Usuario")
-                        </div>
-                        <div class="col-md-3">
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.NombreUsuario,"Usuario", new { @class = "form-control" })
+
                             @Html.TextBoxFor(model => model.NombreUsuario, new { @class = "form-control", @id = "txtNombreUsuario", @placeholder="Ejemp:User23", autocomplete = "off" })
-                            @Html.ValidationMessageFor(model => model.NombreUsuario, null, new { @class = "text-danger"})
                         </div>
+                        @Html.ValidationMessageFor(model => model.NombreUsuario, null, new { @class = "text-danger"})
                         @Html.Label("", null, new {@id = "lblErrorUsuario"})
                     </div>
 
-                    <div class="form-group">
-                        <div class="form-group" style="display: none;">
-                            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="control-label col-md-2">
-                            @Html.Label("Correo electronico")
-                        </div>
-                        <div class="col-md-3">
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Email,"Email", new { @class = "form-control" })
                             @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @id = "txtEmail", @placeholder="Ejemp:correo@hidrosina.com.mx", autocomplete = "off" })
-                            @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger"})
                         </div>
+
+                        @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger"})
+
                         @Html.Label("", null, new {@id = "lblEmail"})
                     </div>
 
-                    <div class="form-group">
-                        <div class="form-group" style="display: none;">
-                        @Html.LabelFor(model => model.Contrasenia, new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="control-label col-md-2">
-                            @Html.Label("Contraseña")
-                        </div>
-                        <div class="col-md-3">
+
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Contrasenia,"Contraseña", new { @class = "form-control" })
                             @Html.TextBoxFor(model => model.Contrasenia, new { @class = "form-control", @id = "txtContrasenia", @placeholder="Introduzca una contraseña", autocomplete = "off" })
+                            </div>
                             @Html.ValidationMessageFor(model => model.Contrasenia)
                         </div>
-                    </div>
+                 
+
+
+
                     <div class="form-group" style="display: none;">
-                        @Html.LabelFor(model => model.Estatus, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Estatus, new { @class = "form-control" })
                         <div class="col-md-3">
                             @Html.TextBoxFor(model => model.Estatus, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Estatus)
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-md-3" style="display: none;">
-                        @Html.LabelFor(model => model.Rol.IdRol, new { @class = "control-label col-md-2" })
-                       
-                        @Html.LabelFor(model => model.Rol.NombreRol, new { @class = "control-label col-md-2" })
-                         </div>
-                        <div class="control-label col-md-2">
-                            @Html.Label("Rol")
-                        </div>
-
-                        <div class="col-md-3">
-                            @*@Html.TextBoxFor(model => model.Rol.IdRol, new { @class = "form-control" })*@
-                            @*@Html.ValidationMessageFor(model => model.Rol.IdRol)*@
-                            @* aqui va el Drop Down List *@
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Rol.NombreRol,"Roles", new { @class = "form-control" })    
                             @Html.DropDownListFor(model => model.Rol.IdRol, new SelectList(Model.Rol.Roles, "IdRol", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
-
-
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-2">
+
+
+                    <div class="row ms-lg-5 pt-5">                      
                             <div class="btn-group d-flex w-100" role="group">
+                            <div class="col-lg-5"></div>
                                 <input type="submit" value="@ViewBag.Accion Guardar" class="btn btn-success" />
-                            @Html.ActionLink("Regresar", "GetAll", "Usuario", htmlAttributes: new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Regresar", "GetAll", "Usuario", htmlAttributes: new { @class = "btn btn-danger" })
+                            </div>
+                        <div class="col-lg-5"></div>
                     </div>
-                    </div>
-                    </div>
-                    </div>
+                </div>
 
             }
         </div>
@@ -169,19 +155,18 @@
     <script type="text/javascript">
 
 
-function SoloLetras(e,controlId)
-             {
-                  var regex = /^[a-zA-Z]+$/;
-                  var letra = e.key;
-                  if(regex.test(letra)){
-                      $('#' + controlId).css({ "color": "green" });
-                      return true;
-                  }
-                  else{
-                      $('#' + controlId).text("Solo se aceptan letras");
-                      $('#' + controlId).css({ "color": "red" });
-                      return false;
-                  }
-              }
-              </script>
+        function SoloLetras(e, controlId) {
+            var regex = /^[a-zA-Z]+$/;
+            var letra = e.key;
+            if (regex.test(letra)) {
+                $('#' + controlId).css({ "color": "green" });
+                return true;
+            }
+            else {
+                $('#' + controlId).text("Solo se aceptan letras");
+                $('#' + controlId).css({ "color": "red" });
+                return false;
+            }
+        }
+    </script>
     }

@@ -17,6 +17,7 @@ namespace ML
         public string CodigoPostal { get; set; }
         public string Pais { get; set; }
         public ML.Operadora Operadora { get; set; }
+        public ML.Direccion? Direccion { get; set; }
         public List<object> Direcciones { get; set; }
     }
 }

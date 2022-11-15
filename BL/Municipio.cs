@@ -49,7 +49,7 @@ namespace BL
                                 municipio.Nombre = row1[1].ToString();
 
                                 municipio.Estado = new ML.Estado();
-                                municipio.Estado.IdEstado = int.Parse(row1[0].ToString());
+                                municipio.Estado.IdEstado = int.Parse(row1[2].ToString());
 
                                 result.Objects.Add(municipio);
                                 result.Correct = true;

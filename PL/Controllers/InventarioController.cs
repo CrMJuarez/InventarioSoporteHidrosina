@@ -74,10 +74,10 @@ namespace PL.Controllers
         [HttpGet]
         public ActionResult Form(int? IdInventario)
         {
-
+            ML.DireccionEntrada direccionEntrada = new ML.DireccionEntrada();
             ML.Inventario inventario = new ML.Inventario();
             ML.Result resultTipoEquipo = BL.TipoEquipo.GetAll();
-            ML.Result resultDireccionEntrada = BL.DireccionEntrada.GetAll();
+            ML.Result resultDireccionEntrada = BL.DireccionEntrada.GetAll(direccionEntrada);
             ML.Result resultMarca = BL.Marca.GetAll();
 
             inventario.TipoEquipo = new ML.TipoEquipo();

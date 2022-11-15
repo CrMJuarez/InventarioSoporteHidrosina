@@ -53,9 +53,7 @@
                         <td style="display :none;">@direccionEntrada.IdDireccionEntrada</td>
 
                         <td class="text-center">@direccionEntrada.Nombre</td>
-                        <td class="text-center">@direccionEntrada.Calle @direccionEntrada.NumeroInterior @direccionEntrada.NumeroExterior @direccionEntrada.Colonia
-                            @direccionEntrada.Municipio @direccionEntrada.Estado @direccionEntrada.CodigoPostal @direccionEntrada.Pais
-                        </td>
+                        <td>@(direccionEntrada.Direccion.Calle + " " + "Num. int:" + direccionEntrada.Direccion.NumeroInterior + " " + "Num. ext:" + direccionEntrada.Direccion.NumeroExterior + " " + direccionEntrada.Direccion.Colonia.Nombre + "," + " " + direccionEntrada.Direccion.Colonia.CodigoPostal + "," + " " + direccionEntrada.Direccion.Colonia.Municipio.Nombre + "," + " " + direccionEntrada.Direccion.Colonia.Municipio.Estado.Nombre + "," + " " + direccionEntrada.Direccion.Colonia.Municipio.Estado.Pais.Nombre + ".")</td>
                        
                         <td style="display :none;">@direccionEntrada.Operadora.IdOperadora</td>
                         <td class="text-center">@direccionEntrada.Operadora.NombreCorto</td>
