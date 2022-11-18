@@ -28,10 +28,10 @@ namespace PL.Controllers
             ML.Result resultOperadora = new ML.Result();
             resultOperadora.Objects = new List<Object>();
             using (var client = new HttpClient())
-            {
+                                    {
                 client.BaseAddress = new Uri(_configuration["WebAPI"]);
 
-                var responseTask = client.GetAsync("api/operadora/GetAll");
+                var responseTask = client.GetAsync("http://192.168.253.152:9094/api/operadora/GetAll");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -87,7 +87,7 @@ namespace PL.Controllers
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(_configuration["WebAPI"]);
-                    var responseTask = client.GetAsync("api/operadora/GetbyId/" + IdOperadora);
+                    var responseTask = client.GetAsync("http://192.168.253.152:9094/api/operadora/GetbyId/" + IdOperadora);
                     responseTask.Wait();
                     var resultAPI = responseTask.Result;
                     if (resultAPI.IsSuccessStatusCode)

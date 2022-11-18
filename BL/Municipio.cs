@@ -19,51 +19,55 @@ namespace BL
                 {
 
                     string query = "MunicipioGetByIdEstado ";
-                    using (SqlCommand cmd = new SqlCommand())
+                    SqlCommand cmd = new SqlCommand();
+
+                    cmd.CommandText = query;
+                    cmd.Connection = context;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    SqlParameter[] collection = new SqlParameter[1];
+
+                    collection[0] = new SqlParameter("@IdEstado", SqlDbType.Int);
+                    collection[0].Value = IdEstado;
+
+                    cmd.Parameters.AddRange(collection);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                    DataTable municipioTable = new DataTable();
+                    da.Fill(municipioTable);
+                    cmd.Connection.Open();
+
+
+
+                    if (municipioTable.Rows.Count > 0)
                     {
-                        cmd.CommandText = query;
-                        cmd.Connection = context;
-                        cmd.CommandType = CommandType.StoredProcedure;
 
+                        result.Objects = new List<object>();
 
-                        SqlParameter[] collection = new SqlParameter[1];
-
-                        collection[0] = new SqlParameter("@IdEstado", SqlDbType.Int);
-                        collection[0].Value = IdEstado;
-
-                        cmd.Parameters.AddRange(collection);
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        foreach (DataRow row1 in municipioTable.Rows)
                         {
-                            DataTable municipioTable = new DataTable();
-                            da.Fill(municipioTable);
-                            cmd.Connection.Open();
+                            ML.Municipio municipio = new ML.Municipio();
 
-                            result.Objects = new List<object>();
+                            municipio.IdMunicipio = int.Parse(row1[0].ToString());
+                            municipio.Nombre = row1[1].ToString();
 
-                            if (municipioTable.Rows.Count > 0)
-                            {
-                                DataRow row1 = municipioTable.Rows[0];
-                                ML.Municipio municipio = new ML.Municipio();
+                            municipio.Estado = new ML.Estado();
+                            municipio.Estado.IdEstado = int.Parse(row1[2].ToString());
 
-                                municipio.IdMunicipio = int.Parse(row1[0].ToString());
-                                municipio.Nombre = row1[1].ToString();
+                            result.Objects.Add(municipio);
 
-                                municipio.Estado = new ML.Estado();
-                                municipio.Estado.IdEstado = int.Parse(row1[2].ToString());
-
-                                result.Objects.Add(municipio);
-                                result.Correct = true;
-                            }
-
-                            else
-                            {
-                                result.Correct = false;
-                                result.ErrorMessage = "No se ha podido realizar la consulta";
-                            }
                         }
+                        result.Correct = true;
+                    }
+                    else
+                    {
+                        result.Correct = false;
+                        result.ErrorMessage = "No se ha podido realizar la consulta";
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 result.Correct = false;

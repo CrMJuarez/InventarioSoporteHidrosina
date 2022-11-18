@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ML.PersonalAutorizacion
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>@ViewBag.Titulo</h3>
+                <h5>Ingrese los datos del personal de autorizacion</h5>
+                <hr />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Form", "PersonalAutorizacion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+
+                    <div class="form-group" style="display: none;">
+                        @Html.LabelFor(model => model.IdPersonalAutorizacion, new { @class = "control-label col-md-2 hidden" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.IdPersonalAutorizacion, new { @class = "form-control hidden" })
+                            @Html.ValidationMessageFor(model => model.IdPersonalAutorizacion)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Nombre, new { @class = "form-control" })
+
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @placeholder="(No puede ir vacio)", autocomplete = "off" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Nombre)
+
+                    </div>
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.ApellidoPaterno, new { @class = "form-control" })
+
+                            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @placeholder="(No puede ir vacio)", autocomplete = "off"})
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+
+                    </div>
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.ApellidoMaterno, new { @class = "form-control" })
+
+                            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @placeholder="(No puede ir vacio)", autocomplete = "off" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+
+                    </div>
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="col-md-offset-2 col-md-2">
+                            <div class="btn-group d-flex w-100" role="group">
+                                <input type="submit" value="@ViewBag.Accion Guardar" class="btn btn-success" />
+                                @Html.ActionLink("Regresar", "GetAll", "PersonalAutorizacion", htmlAttributes: new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        </div>
+    </div>
+
+</div>

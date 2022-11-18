@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Authorization;
 namespace PL.Controllers
 {
     public class LoginController : Controller
@@ -9,6 +9,9 @@ namespace PL.Controllers
             ML.Usuario usuario = new ML.Usuario();
             return View(usuario);
         }
+
+       
+
         [HttpPost]
         public ActionResult Login(string contrasenia, string nombreusuario)
         {
@@ -30,7 +33,7 @@ namespace PL.Controllers
                 {
                     if (usuario.Estatus == true)
                     {
-                        if (usuario.Rol.IdRol == 1)
+                        if (usuario.Rol.IdRol ==1 )
                         {
                             return RedirectToAction("Index", "Home");
                         }

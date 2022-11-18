@@ -1,4 +1,5 @@
 ﻿using BL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -6,9 +7,18 @@ using System.Linq;
 
 namespace PL.Controllers
 {
+    //[Authorize(Roles = "Administrator")]
+    //public class AdministrationController : Controller
+    //{
+    //    public IActionResult Index() =>
+    //        Content("Administrator");
+    //}
+    //[Authorize(Roles = "1")]
+    //[Authorize(Policy = "RequireAdministratorRole")]
     public class UsuarioController : Controller
     {
-      
+        //public IActionResult Index() =>
+        //     Content("1");
 
         public ActionResult GetAll()
         {

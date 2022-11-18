@@ -1,0 +1,249 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ML.Inventario
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>@ViewBag.Titulo</h3>
+                <h5>Ingrese los datos del equipo a ingresar en inventario.</h5>
+                <hr />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Form", "Inventario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="row">
+
+                    <div class="form-group" style="display: none;">
+                        @Html.LabelFor(model => model.IdInventario, new { @class = "control-label col-md-2 hidden" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(model => model.IdInventario, new { @class = "form-control hidden" })
+                            @Html.ValidationMessageFor(model => model.IdInventario)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.NumeroSerie,"Numero serie", new { @class = "form-control" })
+
+                            @Html.TextBoxFor(model => model.NumeroSerie, new { @class = "form-control", @id = "txtNumeroSerie", @placeholder="Introduzca el numero de serie", autocomplete = "off" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.NumeroSerie)
+
+                    </div>
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.NIAF, new { @class = "form-control" })
+
+                            @Html.TextBoxFor(model => model.NIAF, new { @class = "form-control" , @id = "txtNIAF", @placeholder="(Opcional)", autocomplete = "off" })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.NIAF)
+                    </div>
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Responsable, new { @class = "form-control" })
+
+                            @Html.TextBoxFor(model => model.Responsable, new { @class = "form-control", @id = "txtResponsable", @placeholder="Ingrese un responsable", autocomplete = "off"  })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Responsable)
+                    </div>
+
+
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Comentario, new { @class = "form-control" })
+
+                            @Html.TextBoxFor(model => model.Comentario, new { @class = "form-control", @id = "txtComentario", @placeholder="(Opcional)", autocomplete = "off"  })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Comentario)
+                    </div>
+
+
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.TipoEquipo.Nombre,"Equipos", new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.TipoEquipo.IdTipoEquipo, new SelectList(Model.TipoEquipo.Equipos, "IdTipoEquipo", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+                            @Html.LabelFor(model => model.Marca.Marcas,new { @class = "form-control" })
+
+                            @Html.DropDownListFor(model => model.Marca.IdMarca, new SelectList(Model.Modelo.Marca.Marcas, "IdMarca", "Nombre"), "Selecciona una opcion", new { @class = "form-control", @id = "ddlMarca" })
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+
+                            @Html.LabelFor(model => model.Modelo.Modelos, new { @class = "form-control" })
+
+                            @if (Model.Modelo.Modelos == null)
+                            {
+
+                                @Html.DropDownListFor(model => model.Modelo.IdModelo, new SelectList(string.Empty, "Value", "Text"), "Selecciona una opción", new { @class = "form-control", @id = "ddlModelo" })
+
+
+                            }
+                            else
+                            {
+
+                                @Html.DropDownListFor(model => model.Modelo.IdModelo, new SelectList(Model.Modelo.Modelos, "IdModelo", "Nombre"), "Selecciona una opción", new { @class = "form-control", @id = "ddlModelo" })
+
+
+
+
+                            }
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+
+                            @Html.LabelFor(model => model.Modelo.Descripcion, new { @class = "form-control" })
+
+                            @Html.TextBoxFor(model => model.Modelo.Descripcion, new { @class = "form-control", @readonly = "readonly",@id = "txtDescripcion"  })
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person" style="color: limegreen"></i></span>
+
+                            @Html.LabelFor(model => model.DireccionEntrada.IdDireccionEntrada,"Almacen", new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.DireccionEntrada.IdDireccionEntrada, new SelectList(Model.DireccionEntrada.Direcciones, "IdDireccionEntrada", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <div id="qrcode" style="width:100px; height:100px;background-color:#DFF0D8;"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 pt-5">
+                        <div class="col-md-offset-2 col-md-2">
+                            <div class="btn-group d-flex w-100" role="group">
+                                <input type="submit" value="@ViewBag.Accion Guardar" class="btn btn-success" />
+                                @Html.ActionLink("Regresar", "GetAll", "Inventario", htmlAttributes: new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="qrcode.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#ddlMarca").change(function () {
+                $("#ddlModelo").empty();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("MarcaGetByIdModelo")',
+                    dataType: 'json',
+                    data: { idMarca: $("#ddlMarca").val() },
+                    success: function (modelos) {
+                        $("#ddlModelo").append('<option value="0">' + 'Seleccione una opción' + '</option>');
+                        $.each(modelos, function (i, modelos) {
+                            $("#ddlModelo").append('<option value="'
+                                + modelos.idModelo + '">'
+                                + modelos.nombre + '</option>'
+                                + modelos.descripcion);
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed.' + ex);
+                    }
+                });
+            });
+        });
+
+
+
+
+        $(document).ready(function () {
+            $("#ddlModelo").change(function () {
+                $("#txtDescripcion").empty();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("DescripcionGetByIdModelo")',
+                    dataType: 'json',
+                    data: { idModelo: $("#ddlModelo").val() },
+                    success: function (modelos) {
+
+                        $.each(modelos, function (i, modelos) {
+                            $("#txtDescripcion").val(modelos.descripcion
+                            );
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed.' + ex);
+                    }
+                });
+            });
+        });
+
+
+
+
+                                ////        function GenerarQR(val) {
+                                ////    $("#qrcode").html("");
+                                ////    qrcode = new QRCode(document.getElementById("qrcode"), {
+                                ////        text: '' + val,
+                                ////        width: 100,
+                                ////        height: 100
+                                ////    });
+                                ////    qrcode.makeCode();
+                                ////}
+
+
+    </script>
+    }
+

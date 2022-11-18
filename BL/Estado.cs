@@ -20,47 +20,50 @@ namespace BL
                 {
 
                     string query = "EstadoGetByIdPais ";
-                    using (SqlCommand cmd = new SqlCommand())
+                    SqlCommand cmd = new SqlCommand();
+
+                    cmd.CommandText = query;
+                    cmd.Connection = context;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    SqlParameter[] collection = new SqlParameter[1];
+
+                    collection[0] = new SqlParameter("@IdPais", SqlDbType.Int);
+                    collection[0].Value = IdPais;
+                    cmd.Parameters.AddRange(collection);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                    DataTable estadoTable = new DataTable();
+                    da.Fill(estadoTable);
+
+
+                    if (estadoTable.Rows.Count > 0)
                     {
-                        cmd.CommandText = query;
-                        cmd.Connection = context;
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-
-                        SqlParameter[] collection = new SqlParameter[1];
-
-                        collection[0] = new SqlParameter("@IdPais", SqlDbType.Int);
-                        collection[0].Value = IdPais;
-                        cmd.Parameters.AddRange(collection);
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        result.Objects = new List<object>();
+                        foreach (DataRow row1 in estadoTable.Rows)
                         {
-                            DataTable estadoTable = new DataTable();
-                            da.Fill(estadoTable);
-                            cmd.Connection.Open();
-                            result.Objects = new List<object>();
-                            if (estadoTable.Rows.Count > 0)
-                            {
-                                DataRow row1 = estadoTable.Rows[0];
-                                ML.Estado estado = new ML.Estado();
-                                estado.IdEstado = int.Parse(row1[0].ToString());
-                                estado.Nombre = row1[1].ToString();
 
-                                estado.Pais = new ML.Pais();
-                                estado.Pais.IdPais = int.Parse(row1[2].ToString());
+                            ML.Estado estado = new ML.Estado();
+                            estado.IdEstado = int.Parse(row1[0].ToString());
+                            estado.Nombre = row1[1].ToString();
 
-                                result.Objects.Add(estado);
-                                result.Correct = true;
-                            }
+                            estado.Pais = new ML.Pais();
+                            estado.Pais.IdPais = int.Parse(row1[2].ToString());
 
-                            else
-                            {
-                                result.Correct = false;
-                                result.ErrorMessage = "No se ha podido realizar la consulta";
-                            }
+                            result.Objects.Add(estado);
                         }
+                        result.Correct = true;
+                    }
+                    ////cmd.Connection.Open();
+                    else
+                    {
+                        result.Correct = false;
+                        result.ErrorMessage = "No se ha podido realizar la consulta";
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 result.Correct = false;

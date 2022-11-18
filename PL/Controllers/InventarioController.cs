@@ -35,7 +35,7 @@ namespace PL.Controllers
 
                 client.BaseAddress = new Uri(_configuration["WebAPI"]);
 
-                var responseTask = client.GetAsync("api/inventario/GetAll");
+                var responseTask = client.GetAsync("http://192.168.253.152:9094/api/inventario/GetAll");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -97,7 +97,7 @@ namespace PL.Controllers
 
                     client.BaseAddress = new Uri(_configuration["WebAPI"]);
 
-                    var responseTask = client.GetAsync("api/inventario/GetById/" + IdInventario);
+                    var responseTask = client.GetAsync("http://192.168.253.152:9094/api/inventario/GetById/" + IdInventario);
                     responseTask.Wait();
 
                     var resultAPI = responseTask.Result;

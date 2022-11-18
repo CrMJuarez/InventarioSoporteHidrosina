@@ -1,0 +1,136 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="http://bootboxjs.com/bootbox.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">*@
+    <script type="text/javascript" src="~/js/Estilosbs.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Estilosbs.css" />
+
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="~/Imagenes/hidrosina-logo.png" />
+    <title>@ViewData["Title"] - Hidrosina</title>
+
+    @* <link rel="stylesheet" href="~/css/Gota.css">*@
+</head>
+<body>
+    <header class="shadow-lg">
+
+        <nav class="navbar navbar-expand-lg navbar-dark .bg-white">
+            <div class="container-fluid">
+                <div class="col-md-2 col-sm-6 col-xs-8 branding">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+
+                        <img class="logo horizontal-logo" src="~/Imagenes/logo.png" alt="Hidrosina">
+
+                    </a>
+
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Usuarios
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                    <a class="dropdown-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="GetAll">Usuarios</a>
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Rol" asp-action="GetAll">Roles</a>
+                                    </a>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Catalogos
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                    <a class="dropdown-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="PersonalAutorizacion" asp-action="GetAll">Personal que autoriza</a>
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="PersonalEntrega" asp-action="GetAll">Personal que entrega</a>
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Marca" asp-action="GetAll">Marcas</a>
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Modelo" asp-action="GetAll">Modelos</a>
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Operadora" asp-action="GetAll">Operadoras</a>
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="DireccionEntrada" asp-action="GetAll">Direcciones de entrada</a>
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="DireccionDestino" asp-action="GetAll">Direcciones de destino</a>
+                                    </a>
+                                    <a class="dropdown-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="TipoEquipo" asp-action="GetAll">Tipos de equipo</a>
+                                    </a>
+                                </div>
+                            </li>
+                        }
+                         @if (User.IsInRole("Administrador")||User.IsInRole("Soporte"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Inventario" asp-action="GetAll">Inventario</a>
+                            </li>
+                        }
+                         @if (User.IsInRole("Administrador"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="EntregaEquipo" asp-action="Form">Entrega de equipos</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Salir">Salir</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <label style="margin-top:2%;margin-left:35%;font-size:x-small;color:black">Hidrosina © @DateTime.Now.Year Todos los derechos Reservados</label>
+    </footer>
+
+    <script type="text/javascript" src="~/Scripts/PersonalAutorizacion/PersonalJS.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

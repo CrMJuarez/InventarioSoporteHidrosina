@@ -18,52 +18,57 @@ namespace BL
                 using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString("ConnectionStrings:DefaultConnection")))
                 {
                     string query = "ColoniaGetByIdMunicipio ";
-                    using (SqlCommand cmd = new SqlCommand())
+                    SqlCommand cmd = new SqlCommand();
+
+                    cmd.CommandText = query;
+                    cmd.Connection = context;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    SqlParameter[] collection = new SqlParameter[1];
+
+                    collection[0] = new SqlParameter("@IdMunicipio", SqlDbType.Int);
+                    collection[0].Value = IdMunicipio;
+
+                    cmd.Parameters.AddRange(collection);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                    DataTable coloniaTable = new DataTable();
+                    da.Fill(coloniaTable);
+
+
+
+
+                    if (coloniaTable.Rows.Count > 0)
                     {
-                        cmd.CommandText = query;
-                        cmd.Connection = context;
-                        cmd.CommandType = CommandType.StoredProcedure;
 
 
-                        SqlParameter[] collection = new SqlParameter[1];
 
-                        collection[0] = new SqlParameter("@IdMunicipio", SqlDbType.Int);
-                        collection[0].Value = IdMunicipio;
-
-                        cmd.Parameters.AddRange(collection);
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        result.Objects = new List<object>();
+                        foreach (DataRow row1 in coloniaTable.Rows)
                         {
-                            DataTable coloniaTable = new DataTable();
-                            da.Fill(coloniaTable);
-                            cmd.Connection.Open();
+                            ML.Colonia colonia = new ML.Colonia();
 
-                            result.Objects = new List<object>();
+                            colonia.IdColonia = int.Parse(row1[0].ToString());
+                            colonia.Nombre = row1[1].ToString();
+                            colonia.CodigoPostal = row1[2].ToString();
 
-                            if (coloniaTable.Rows.Count > 0)
-                            {
+                            colonia.Municipio = new ML.Municipio();
+                            colonia.Municipio.IdMunicipio = int.Parse(row1[3].ToString());
 
-                                DataRow row1 = coloniaTable.Rows[0];
-                                ML.Colonia colonia = new ML.Colonia();
+                            result.Objects.Add(colonia);
 
-                                colonia.IdColonia = int.Parse(row1[0].ToString());
-                                colonia.Nombre = row1[1].ToString();
-                                colonia.CodigoPostal = row1[2].ToString();
-
-                                colonia.Municipio = new ML.Municipio();
-                                colonia.Municipio.IdMunicipio = int.Parse(row1[3].ToString());
-
-                                result.Objects.Add(colonia);
-                                result.Correct = true;
-                            }
-                            else
-                            {
-                                result.Correct = false;
-                                result.ErrorMessage = "No se ha podido realizar la consulta";
-                            }
                         }
+                        result.Correct = true;
+                    }
+                    else
+                    {
+                        result.Correct = false;
+                        result.ErrorMessage = "No se ha podido realizar la consulta";
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 result.Correct = false;

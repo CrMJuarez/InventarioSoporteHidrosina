@@ -29,7 +29,7 @@ namespace PL.Controllers
             {
                 client.BaseAddress = new Uri(_configuration["WebAPI"]);
 
-                var responseTask = client.GetAsync("api/direccionEntrada/GetAll");
+                var responseTask = client.GetAsync("http://192.168.253.152:9094/api/direccionEntrada/GetAll");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -84,7 +84,7 @@ namespace PL.Controllers
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(_configuration["WebAPI"]);
-                    var responseTask = client.GetAsync("api/direccionEntrada/GetbyId/" + IdDireccionEntrada);
+                    var responseTask = client.GetAsync("http://192.168.253.152:9094/api/direccionEntrada/GetbyId/" + IdDireccionEntrada);
                     responseTask.Wait();
                     var resultAPI = responseTask.Result;
                     if (resultAPI.IsSuccessStatusCode)

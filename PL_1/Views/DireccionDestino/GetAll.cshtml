@@ -1,0 +1,72 @@
+﻿@model ML.DireccionDestino
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <h2>Direcciones de destino</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h5>Seleccione una direccion de destino para editarla u el boton + para agregar una direccion...</h5>
+            <hr />
+        </div>
+    </div>
+    <div style="float:right;">
+        @Html.ActionLink("+", "Form", "DireccionDestino", htmlAttributes: new { @class = "btn btn-success" })
+    </div>
+    @if (Model.Direcciones == null)
+    {
+        <div class="p-3 mb-2 bg-danger text-white">Aun no hay direcciones registradas</div>
+    }
+    else
+    {
+        @*  <div style="overflow-x:auto;">*@
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr style="color: White; background-color: #00B140; font-size: Medium; font-weight: bold; padding: 8px" role="row">
+
+                    <td class="text-center">Editar</td>
+
+                    <td style="display :none;">IdDireccionDestino</td>
+                    <td class="text-center">Nombre</td>
+                    <td class="text-center">Direccion de destino</td>
+                    <td style="display :none;">IdOperadora</td>
+                    <td class="text-center">Operadora</td>
+                    @*<td class="text-center">ApellidoPaterno</td>
+                <td class="text-center">ApellidoMaterno</td>*@
+
+
+                    <td class="text-center">Eliminar</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.DireccionDestino direccionDestino in Model.Direcciones)
+                {
+                    <tr>
+                        <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "DireccionDestino", new { IdDireccionDestino = direccionDestino.IdDireccionDestino })"></a></td>
+
+                        <td style="display :none;">@direccionDestino.IdDireccionDestino</td>
+
+                        <td class="text-center">@direccionDestino.Nombre</td>
+                        <td class="text-center">
+                            @direccionDestino.Calle @direccionDestino.NumeroInterior @direccionDestino.NumeroExterior @direccionDestino.Colonia
+                            @direccionDestino.Municipio @direccionDestino.Estado @direccionDestino.CodigoPostal @direccionDestino.Pais
+                        </td>
+
+                        <td style="display :none;">@direccionDestino.Operadora.IdOperadora</td>
+                        <td class="text-center">@direccionDestino.Operadora.NombreCorto</td>
+                        <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "DireccionDestino", new { IdDireccionDestino = direccionDestino.IdDireccionDestino})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        @* </div>*@
+    }
+</div>
+
